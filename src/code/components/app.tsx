@@ -1,7 +1,11 @@
 
 import * as React from "react";
+import { parse } from "query-string";
 
 import { CodapIFrame } from "./codap-iframe";
+
+const params = parse(window.location.search);
+const mode = params.mode === "dev" ? "dev" : "prod";
 
 interface AppProps {
 }
@@ -14,7 +18,7 @@ export class App extends React.Component<AppProps, AppState> {
 
   public render() {
     return (
-      <CodapIFrame />
+      <CodapIFrame mode={mode} />
     );
   }
 
