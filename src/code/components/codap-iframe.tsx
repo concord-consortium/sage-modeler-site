@@ -46,7 +46,7 @@ export class CodapIFrame extends React.Component<CodapIFrameProps, CodapIFrameSt
   }
 
   private renderDev() {
-    const sageModelerParams = encodeURIComponent("?renderCODAPToolbar=true");
+    const sageModelerParams = encodeURIComponent("?standalone=true");
     return <iframe ref={el => this.iframe = el} src={`/codap/static/dg/en/cert/index.html?standalone=true&embeddedMode=yes&cfmBaseUrl=/cfm/js&di=/sage/sagemodeler.html${sageModelerParams}`} />;
   }
 }
