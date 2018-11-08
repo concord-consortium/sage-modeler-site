@@ -108,6 +108,15 @@ module.exports = (env, argv) => {
         __VERSION__: buildInfo.tag,
         __BUILD_DATE__: buildInfo.date,
       }),
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: 'app.html',
+        template: 'src/templates/app.html.ejs',
+        __BUILD_INFO__: buildInfoString,
+        __ENVIRONMENT__: environment,
+        __VERSION__: buildInfo.tag,
+        __BUILD_DATE__: buildInfo.date,
+      }),
       new CopyWebpackPlugin([{
         from: 'src/assets',
         to: ''

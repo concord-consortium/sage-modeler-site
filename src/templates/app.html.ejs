@@ -49,110 +49,17 @@
     }
   </script -->
 
-  <!-- Cloud File Manager -->
-  <link rel="stylesheet" href="/cfm/css/app.css">
-  <script type="text/javascript" src="/cfm/js/globals.js"></script>
-  <script type="text/javascript" src="/cfm/js/app.js"></script>
-
   <!-- <script type="text/javascript"> atatus.config('3aefe626ce09488db16c70d9e10fea9a').install(); </script> -->
   <% for (key in htmlWebpackPlugin.files.css) { %>
   <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[key] %>" />
   <% } %>
-  <link rel="stylesheet" href="css/splash-screen.css">
 </head>
 <body>
   <div class="content-box">
     <div id='app'></div>
-    <div id='splash-container'>
-      <div id='splash-background'></div>
-      <div id='splash-dialog'>
-        <div id='splash-inner-dialog'>
-          <div>
-            <img src="img/logo.png" />
-          </div>
-          <div>
-            <p>
-              Created by the Concord Consortium and the<br/>CREATE for STEM Institute at Michigan State University.
-            </p>
-            <p>
-              Version <%= htmlWebpackPlugin.options.__VERSION__ %> (<%= htmlWebpackPlugin.options.__BUILD_DATE__ %>)
-            </p>
-            <p>
-              <span id="splash-loading">Loading</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  <script src="js/splash-screen.js"></script>
-  <script>
-    var buildInfo = "__BUILD_INFO__".split(" ");
-    var commit    = buildInfo[2];
-
-    var options = {
-      app: "app.html" + window.location.search,
-      autoSaveInterval: 5,
-      mimeType: "application/json",
-      appName: "SageModeler",
-      appVersion: "<%= htmlWebpackPlugin.options.__VERSION__ %>",
-      appBuildNum: commit,
-      wrapFileContent: false,
-      readableMimeTypes: ['application/x-sagemod-document'],
-      extension: 'sagemod',
-      readableExtensions: ["sagemod"],
-      enableLaraSharing: true,
-      sendPostMessageClientEvents: true,
-      log: function(event, eventData) {
-        var params = eventData ? JSON.stringify(eventData) : "";
-        console.log(event, params);
-      },
-      providers: [
-        {
-          "name": "readOnly",
-          "displayName": "Examples",
-          "src": "examples.json"
-        },
-        {
-          "name": "lara",
-          "patch": true,
-          "patchObjectHash": function(obj) {
-            return obj.guid || JSON.stringify(obj);
-          }
-        },
-        {
-          "name": "googleDrive",
-          "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com"
-        },
-        {
-          "name": "documentStore",
-          "displayName": "Concord Cloud",
-          "deprecationPhase": (function() {
-                                return 3;
-                              }()),
-          "patch": true,
-          "patchObjectHash": function(obj) {
-            return obj.guid || JSON.stringify(obj);
-          },
-          "appName": "SageModeler",
-          "appVersion": "<%= htmlWebpackPlugin.options.__VERSION__ %>",
-          "appBuildNum": commit,
-        },
-        "localFile"
-      ],
-      ui: {
-        menu: CloudFileManager.DefaultMenu,
-        menuBar: {
-          info: "<%= htmlWebpackPlugin.options.__VERSION__ %>",
-          onInfoClicked: function (client) {
-            if (client.iframe && client.iframe.contentWindow) {
-              client.iframe.contentWindow.postMessage({type: "sagemodeler::showVersionInfo"}, "*")
-            }
-          }
-        }
-      },
-    }
-    CloudFileManager.createFrame(options, "app");
-  </script>
+  <% for (key in htmlWebpackPlugin.files.chunks) { %>
+  <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>" type="text/javascript"></script>
+  <% } %>
 </body>
 </html>

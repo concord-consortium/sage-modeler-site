@@ -5,6 +5,7 @@
 // were the same proxy is accomplished using CloudFront behaviors.
 
 import * as http from "http";
+import * as https from "https";
 import * as fs from "fs";
 import * as path from "path";
 import * as url from "url";
@@ -87,7 +88,11 @@ const serveDirectory = (cwd: string, dir: string, res: http.ServerResponse) => {
 };
 
 // main server
-const server = http.createServer((req, res) => {
+const options: https.ServerOptions = {
+  key: fs.readFileSync(`${__dirname}/devproxy.key`),
+  cert: fs.readFileSync(`${__dirname}/devproxy.crt`)
+};
+const server = https.createServer(options, (req, res) => {
   const done = (code, err) => {
     if (code !== 200) {
       res.statusCode = code;
@@ -113,7 +118,7 @@ const server = http.createServer((req, res) => {
       findFile(req, res, endpoint, done);
     } else {
       // proxy to webpack-devserver
-      proxy.web(req, res, { target: "http://localhost:10001" }, (err) => {
+      proxy.web(req, res, { target: "https://localhost:10001", secure: false }, (err) => {
         res.statusCode = 500;
         res.write(err.toString());
         res.end();

@@ -1,6 +1,6 @@
 {
   "name": "sage-modeler-site",
-  "version": "1.0.0",
+  "version": "1.14.9",
   "description": "Wrapper for Sage running in CODAP",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "clean": "rimraf dist",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "dev:proxy": "ts-node src/devproxy/index.ts",
-    "dev:server": "webpack-dev-server --inline --hot --port=10001 --content-base dist/",
-    "dev:browse": "opener http://localhost:10000/?mode=dev"
+    "dev:server": "webpack-dev-server --https --inline --hot --port=10001 --content-base dist/",
+    "dev:browse": "opener https://localhost:10000/"
   },
   "repository": {
     "type": "git",
