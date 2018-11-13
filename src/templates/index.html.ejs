@@ -145,14 +145,30 @@
         menuBar: {
           info: "<%= htmlWebpackPlugin.options.__VERSION__ %>",
           onInfoClicked: function (client) {
-            if (client.iframe && client.iframe.contentWindow) {
-              client.iframe.contentWindow.postMessage({type: "sagemodeler::showVersionInfo"}, "*")
-            }
+            postMessageToClient(client, {type: "sagemodeler::showVersionInfo"})
           }
         }
       },
     }
-    CloudFileManager.createFrame(options, "app");
+    var postMessageToClient = function (client, message) {
+      if (client.iframe && client.iframe.contentWindow) {
+        client.iframe.contentWindow.postMessage(message, "*")
+      }
+    };
+    CloudFileManager.createFrame(options, "app", function (event) {
+      if (event.type == "rendered") {
+        var client = event.data.client;
+        client.insertMenuItemAfter("openFileDialog", {
+          name: "Close",
+          action: function () {
+            client.closeFileDialog(function () {
+              // remove hash from url completely
+              window.location = window.location.toString().replace(/#.*$/, "");;
+            });
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
