@@ -16,7 +16,7 @@ const config = {
   port: 10000,
   endpoints: {
     codap: path.normalize(`${__dirname}/../../../codap/dist/travis/`),
-    sage: path.normalize(`${__dirname}/../../../building-models/dist/`),
+    sage: path.normalize(`${__dirname}/../../../building-models/dev/`),
     cfm: path.normalize(`${__dirname}/../../../cloud-file-manager/dist/`),
   }
 };

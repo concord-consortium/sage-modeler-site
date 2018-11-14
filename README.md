@@ -52,6 +52,17 @@ To deploy a production release:
 6. Push production to GitHub
 7. Use https://github.com/concord-consortium/sagemodeler/releases to create a new release tag
 
+### QA
+
+Since this project depends on three other deployed projects (CODAP, Sage and CFM) a set of query parameters is available to override
+where those projects are deployed.  This enables this project to be tested against branch builds of the other projects.
+
+The parameters are:
+
+- ?codap=<URL> where URL is the url to the CODAP index.html page
+- ?cfmBaseUrl=<URL> where URL is the url to the /js folder for CFM
+- ?di=<URL> where URL is the url to sage (di is passed to CODAP, it stands for "data interactive")
+
 ### Testing
 
 TDB.
