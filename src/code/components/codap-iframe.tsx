@@ -58,7 +58,7 @@ export class CodapIFrame extends React.Component<CodapIFrameProps, CodapIFrameSt
 
   private renderProd() {
     const src = this.iframeSrc({
-      codap: "/~dmartin/travis/static/dg/en/cert/index.html",
+      codap: "/~dmartin/travis2/static/dg/en/cert/index.html",
       cfmBaseUrl: "https://cloud-file-manager.concord.org/branch/master/js/",
       di: "https://sage.concord.org/branch/master/sagemodeler.html"
     });
