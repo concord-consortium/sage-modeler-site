@@ -18,7 +18,8 @@ module.exports = (env, argv) => {
           date: buildDate,
           tag: packageJSON.version
         },
-        buildInfoString = `${buildInfo.date} ${buildInfo.tag}`;
+        buildInfoString = `${buildInfo.date} ${buildInfo.tag}`,
+        cfmUrl = devMode ? "/cfm" : "https://cloud-file-manager.concord.org/branch/master";
 
   return {
     context: __dirname, // to automatically find tsconfig.json
@@ -107,6 +108,7 @@ module.exports = (env, argv) => {
         __ENVIRONMENT__: environment,
         __VERSION__: buildInfo.tag,
         __BUILD_DATE__: buildInfo.date,
+        __CFM_URL__: cfmUrl,
       }),
       new HtmlWebpackPlugin({
         inject: false,
@@ -116,6 +118,7 @@ module.exports = (env, argv) => {
         __ENVIRONMENT__: environment,
         __VERSION__: buildInfo.tag,
         __BUILD_DATE__: buildInfo.date,
+        __CFM_URL__: cfmUrl,
       }),
       new CopyWebpackPlugin([{
         from: 'src/assets',

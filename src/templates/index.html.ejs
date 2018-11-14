@@ -49,10 +49,10 @@
     }
   </script -->
 
-  <!-- Cloud File Manager -->
-  <link rel="stylesheet" href="/cfm/css/app.css">
-  <script type="text/javascript" src="/cfm/js/globals.js"></script>
-  <script type="text/javascript" src="/cfm/js/app.js"></script>
+  <!-- Cloud File Manager! -->
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.__CFM_URL__%>/css/app.css">
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.options.__CFM_URL__%>/js/globals.js"></script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.options.__CFM_URL__%>/js/app.js"></script>
 
   <!-- <script type="text/javascript"> atatus.config('3aefe626ce09488db16c70d9e10fea9a').install(); </script> -->
   <% for (key in htmlWebpackPlugin.files.css) { %>
