@@ -5,6 +5,11 @@
 
     var removeSplashContainer = function () {
       splashContainer.parentElement.removeChild(splashContainer);
+
+      // trigger a callback that is used in index.html.ejs to show the open or create dialog
+      if (window.onSplashScreenClosed) {
+        window.onSplashScreenClosed();
+      }
     };
 
     // remove the splash screen on any click
