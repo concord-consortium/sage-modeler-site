@@ -159,6 +159,12 @@
       if (event.type === "rendered") {
         var client = event.data.client;
         client.insertMenuItemAfter("openFileDialog", {
+          name: "Import ...",
+          action: function () {
+            client.importDataDialog();
+          }
+        });
+        client.insertMenuItemAfter("openFileDialog", {
           name: "Close",
           action: function () {
             client.closeFileDialog(function () {
