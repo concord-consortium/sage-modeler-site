@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 interface AboutProps {
   onClose: () => void;
@@ -61,3 +62,13 @@ export class About extends React.Component<AboutProps, AboutState> {
     e.stopPropagation();
   }
 }
+
+export const showAbout = () => {
+  const unmount = () => {
+    const aboutContainer = document.getElementById("about-container");
+    if (aboutContainer) {
+      ReactDOM.unmountComponentAtNode(aboutContainer);
+    }
+  };
+  ReactDOM.render(<About onClose={unmount} />, document.getElementById("about-container"));
+};

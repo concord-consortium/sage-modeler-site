@@ -63,6 +63,7 @@
 <body>
   <div class="content-box">
     <div id='app'></div>
+    <div id='about-container'></div>
     <div id='splash-container'>
       <div id='splash-background'></div>
       <div id='splash-dialog'>
@@ -86,151 +87,13 @@
     </div>
   </div>
   <script src="js/splash-screen.js"></script>
+  <script>
+    // Expose webpack htmlWebpackPlugin template variables.
+    window.COMMIT = "__BUILD_INFO__".split(" ")[2];
+    window.APP_VERSION = "<%= htmlWebpackPlugin.options.__VERSION__ %>";
+  </script>
   <% for (key in htmlWebpackPlugin.files.chunks) { %>
   <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>" type="text/javascript"></script>
   <% } %>
-  <script>
-    var buildInfo = "__BUILD_INFO__".split(" ");
-    var commit    = buildInfo[2];
-
-    var getQueryVariable = function (name) {
-      var query = window.location.search.substring(1);
-      var vars = query.split('&');
-      for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) === name) {
-          return decodeURIComponent(pair[1]);
-        }
-      }
-    }
-    var updateQueryStringParameter = function (key, value) {
-      var uri = window.location.search;
-      var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-      if (uri.match(re)) {
-        if (value !== null) {
-          // Update variable.
-          window.location.search = uri.replace(re, '$1' + key + "=" + value + '$2');
-        } else {
-          // Remove variable.
-          window.location.search = uri.replace(re, '$1' + '$2');
-        }
-      } else {
-        if (value !== null) {
-          window.location.search = uri + separator + key + "=" + value;
-        }
-      }
-    }
-    var postMessageToClient = function (client, message) {
-      if (client.iframe && client.iframe.contentWindow) {
-        client.iframe.contentWindow.postMessage(message, "*")
-      }
-    };
-
-    var options = {
-      app: "app.html" + window.location.search,
-      autoSaveInterval: 5,
-      mimeType: "application/json",
-      appName: "SageModeler",
-      appVersion: "<%= htmlWebpackPlugin.options.__VERSION__ %>",
-      appBuildNum: commit,
-      wrapFileContent: false,
-      readableMimeTypes: ['application/x-sagemod-document'],
-      extension: 'sagemod',
-      readableExtensions: ["sagemod"],
-      enableLaraSharing: true,
-      sendPostMessageClientEvents: true,
-      log: function(event, eventData) {
-        var params = eventData ? JSON.stringify(eventData) : "";
-        console.log(event, params);
-      },
-      providers: [
-        {
-          "name": "readOnly",
-          "displayName": "Examples",
-          "src": "examples.json"
-        },
-        {
-          "name": "lara",
-          "patch": true,
-          "patchObjectHash": function(obj) {
-            return obj.guid || JSON.stringify(obj);
-          }
-        },
-        {
-          "name": "googleDrive",
-          "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com"
-        },
-        {
-          "name": "documentStore",
-          "displayName": "Concord Cloud",
-          "deprecationPhase": (function() {
-                                return 3;
-                              }()),
-          "patch": true,
-          "patchObjectHash": function(obj) {
-            return obj.guid || JSON.stringify(obj);
-          },
-          "appName": "SageModeler",
-          "appVersion": "<%= htmlWebpackPlugin.options.__VERSION__ %>",
-          "appBuildNum": commit,
-        },
-        "localFile"
-      ],
-      ui: {
-        menu: CloudFileManager.DefaultMenu,
-        menuBar: {
-          info: "<%= htmlWebpackPlugin.options.__VERSION__ %>",
-          onInfoClicked: function (client) {
-            postMessageToClient(client, {type: "sagemodeler::showVersionInfo"})
-          },
-          languageMenu: {
-            currentLang: getQueryVariable("lang") || "en-US",
-            options: [
-              {langCode: "en-US", flag: "us"},
-              {langCode: "es", flag: "es"},
-              {langCode: "he", flag: "il"},
-              {langCode: "tr", flag: "tr"},
-              {langCode: "zh", flag: "tw"}
-            ],
-            onLangChanged: function (langCode) {
-              if (langCode === "en-US") {
-                updateQueryStringParameter("lang", null);
-              } else {
-                updateQueryStringParameter("lang", langCode);
-              }
-            }
-          }
-        }
-      },
-    }
-    CloudFileManager.createFrame(options, "app", function (event) {
-      if (event.type === "rendered") {
-        var client = event.data.client;
-        client.insertMenuItemAfter("openFileDialog", {
-          name: "Import ...",
-          action: function () {
-            client.importDataDialog();
-          }
-        });
-        client.insertMenuItemAfter("openFileDialog", {
-          name: "Close",
-          action: function () {
-            client.closeFileDialog(function () {
-              // remove hash from url completely
-              window.location = window.location.toString().replace(/#.*$/, "");;
-            });
-          }
-        });
-
-        window.onSplashScreenClosed = function () {
-          // only show the open or create if there is no hash parameter (for loading a file)
-          if (window.location.hash.length < 2) {
-            window.showOpenOrCreateDialog(client);
-          }
-        };
-      }
-    });
-  </script>
 </body>
 </html>
