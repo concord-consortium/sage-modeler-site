@@ -86,6 +86,9 @@
     </div>
   </div>
   <script src="js/splash-screen.js"></script>
+  <% for (key in htmlWebpackPlugin.files.chunks) { %>
+  <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>" type="text/javascript"></script>
+  <% } %>
   <script>
     var buildInfo = "__BUILD_INFO__".split(" ");
     var commit    = buildInfo[2];
@@ -219,6 +222,13 @@
             });
           }
         });
+
+        window.onSplashScreenClosed = function () {
+          // only show the open or create if there is no hash parameter (for loading a file)
+          if (window.location.hash.length < 2) {
+            window.showOpenOrCreateDialog(client);
+          }
+        };
       }
     });
   </script>
