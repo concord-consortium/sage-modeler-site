@@ -11,6 +11,7 @@ interface CodapParamsOptions {
 }
 
 interface UrlParams {
+  lang?: string;
   codap?: string;
   cfmBaseUrl?: string;
   di?: string;
@@ -81,6 +82,14 @@ export class CodapIFrame extends React.Component<CodapIFrameProps, CodapIFrameSt
     codap = urlParams.codap || codap;
     cfmBaseUrl = urlParams.cfmBaseUrl || cfmBaseUrl;
     di = urlParams.di || di;
+
+    // Apply language setting to CODAP iframe. It will propagate down and update Sage modeler language too.
+    if (urlParams.lang) {
+      const lang = urlParams.lang.split("-")[0];
+      if (lang !== "en") {
+        codap = codap.replace("/en/", `/${lang}/`);
+      }
+    }
 
     const sageModelerParams = encodeURIComponent("?standalone=true");
     return `${codap}?standalone=true&embeddedMode=yes&hideSplashScreen=yes&hideWebViewLoading=yes&cfmBaseUrl=${cfmBaseUrl}&di=${di}${sageModelerParams}`;
