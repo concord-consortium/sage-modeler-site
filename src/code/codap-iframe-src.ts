@@ -1,19 +1,10 @@
-import * as queryString from "query-string";
-
+import { urlParams } from "./url-params";
 const mode = window.location.hostname === "localhost" ? "dev" : "prod";
-const urlParams: UrlParams = queryString.parse(window.location.search);
 
 interface CodapParamsOptions {
   codap: string;
   cfmBaseUrl: string;
   di: string;
-}
-
-interface UrlParams {
-  lang?: string;
-  codap?: string;
-  cfmBaseUrl?: string;
-  di?: string;
 }
 
 const iframeSrc = (options: CodapParamsOptions) => {

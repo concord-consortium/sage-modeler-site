@@ -1,39 +1,12 @@
 import { showOpenOrCreateDialog } from "./components/open-or-create";
 import { showAbout } from "./components/about";
 import { codapIframeSrc } from "./codap-iframe-src";
+import { urlParams } from "./url-params";
+import * as queryString from "query-string";
 // CFM is added using script tag.
 const CloudFileManager = (window as any).CloudFileManager;
 
 import "../styles/index.sass";
-
-const getQueryVariable = name => {
-  const query = window.location.search.substring(1);
-  const vars = query.split("&");
-  for (const variable of vars) {
-    const pair = variable.split("=");
-    if (decodeURIComponent(pair[0]) === name) {
-      return decodeURIComponent(pair[1]);
-    }
-  }
-};
-const updateQueryStringParameter = (key, value) => {
-  const uri = window.location.search;
-  const re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-  const separator = uri.indexOf("?") !== -1 ? "&" : "?";
-  if (uri.match(re)) {
-    if (value !== null) {
-      // Update variable.
-      window.location.search = uri.replace(re, "$1" + key + "=" + value + "$2");
-    } else {
-      // Remove variable.
-      window.location.search = uri.replace(re, "$1" + "$2");
-    }
-  } else {
-    if (value !== null) {
-      window.location.search = uri + separator + key + "=" + value;
-    }
-  }
-};
 
 const options = {
   app: codapIframeSrc,
@@ -93,7 +66,7 @@ const options = {
         showAbout();
       },
       languageMenu: {
-        currentLang: getQueryVariable("lang") || "en-US",
+        currentLang: urlParams.lang || "en-US",
         options: [
           {langCode: "en-US", flag: "us"},
           {langCode: "es", flag: "es"},
@@ -102,11 +75,13 @@ const options = {
           {langCode: "zh", flag: "tw"}
         ],
         onLangChanged: langCode => {
+          const newParams = Object.assign({}, urlParams);
           if (langCode === "en-US") {
-            updateQueryStringParameter("lang", null);
+            delete newParams.lang;
           } else {
-            updateQueryStringParameter("lang", langCode);
+            newParams.lang = langCode;
           }
+          window.location.search = queryString.stringify(newParams);
         }
       }
     }
