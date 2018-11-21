@@ -1,4 +1,4 @@
-import { urlParams } from "./url-params";
+import { urlParams } from "./utils/url-params";
 const mode = window.location.hostname === "localhost" ? "dev" : "prod";
 
 interface CodapParamsOptions {

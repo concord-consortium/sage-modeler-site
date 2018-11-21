@@ -1,7 +1,8 @@
 import { showOpenOrCreateDialog } from "./components/open-or-create";
 import { showAbout } from "./components/about";
 import { codapIframeSrc } from "./codap-iframe-src";
-import { urlParams } from "./url-params";
+import { urlParams } from "./utils/url-params";
+import { tr } from "./utils/translate";
 import * as queryString from "query-string";
 // CFM is added using script tag.
 const CloudFileManager = (window as any).CloudFileManager;
@@ -92,13 +93,13 @@ CloudFileManager.createFrame(options, "app", event => {
   if (event.type === "rendered") {
     const client = event.data.client;
     client.insertMenuItemAfter("openFileDialog", {
-      name: "Import ...",
+      name: tr("~SAGEMODELER.MENU.IMPORT"),
       action: () => {
         client.importDataDialog();
       }
     });
     client.insertMenuItemAfter("openFileDialog", {
-      name: "Close",
+      name: tr("~SAGEMODELER.MENU.CLOSE"),
       action: () => {
         client.closeFileDialog(() => {
           // remove hash from url completely
