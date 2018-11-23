@@ -1,5 +1,4 @@
 import { urlParams } from "./url-params";
-const mode = window.location.hostname === "localhost" ? "dev" : "prod";
 
 interface CodapParamsOptions {
   codap: string;
@@ -27,16 +26,9 @@ const iframeSrc = (options: CodapParamsOptions) => {
   return `${codap}?standalone=true&embeddedMode=yes&hideSplashScreen=yes&hideWebViewLoading=yes&cfmBaseUrl=${cfmBaseUrl}&di=${di}${sageModelerParams}`;
 };
 
-const prodSrc = iframeSrc({
-  codap: "/~dmartin/travis4/static/dg/en/cert/index.html",
-  cfmBaseUrl: "https://cloud-file-manager.concord.org/branch/master/js/",
-  di: "https://sage.concord.org/branch/master/sagemodeler.html"
+export const codapIframeSrc = iframeSrc({
+  // SageModelerBuildConfig is defined in index.html using webpack configuration.
+  codap: (window as any).SageModelerBuildConfig.codapUrl,
+  cfmBaseUrl: (window as any).SageModelerBuildConfig.cfmUrl + "/js",
+  di: (window as any).SageModelerBuildConfig.sageUrl + "/sagemodeler.html"
 });
-
-const devSrc = iframeSrc({
-  codap: "/codap/static/dg/en/cert/index.html",
-  cfmBaseUrl: "/cfm/js",
-  di: "/sage/sagemodeler.html"
-});
-
-export const codapIframeSrc = mode === "dev" ? devSrc : prodSrc;
