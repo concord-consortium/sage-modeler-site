@@ -1,4 +1,4 @@
-import { urlParams } from "./url-params";
+import { urlParams } from "./utils/url-params";
 
 interface CodapParamsOptions {
   codap: string;
