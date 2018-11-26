@@ -14,8 +14,8 @@ const options = {
   autoSaveInterval: 5,
   mimeType: "application/json",
   appName: "SageModeler",
-  appVersion: (window as any).APP_VERSION,
-  appBuildNum: (window as any).COMMIT,
+  appVersion: (window as any).SageModelerBuildConfig.appVersion,
+  appBuildNum: (window as any).SageModelerBuildConfig.commit,
   wrapFileContent: false,
   readableMimeTypes: ["application/x-sagemod-document"],
   extension: "sagemod",
@@ -54,15 +54,15 @@ const options = {
         return obj.guid || JSON.stringify(obj);
       },
       "appName": "SageModeler",
-      "appVersion": (window as any).APP_VERSION,
-      "appBuildNum": (window as any).COMMIT,
+      "appVersion": (window as any).SageModelerBuildConfig.appVersion,
+      "appBuildNum": (window as any).SageModelerBuildConfig.commit,
     },
     "localFile"
   ],
   ui: {
     menu: CloudFileManager.DefaultMenu,
     menuBar: {
-      info: (window as any).APP_VERSION,
+      info: (window as any).SageModelerBuildConfig.appVersion,
       onInfoClicked: () => {
         showAbout();
       },
