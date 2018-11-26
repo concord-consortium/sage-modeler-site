@@ -1,4 +1,5 @@
 import * as React from "react";
+import { tr } from "../utils/translate";
 
 interface CFMClient {
   hideBlockingModal();
@@ -27,10 +28,10 @@ class OpenOrCreateDialog extends React.Component<OpenOrCreateDialogProps, {}> {
     return (
       <div onKeyDown={this.handleKeyDown} className="open-or-create">
         <div>
-          <button onClick={this.handleOpenDocument} ref={el => this.openButton = el}>Open Document or Browse Examples</button>
+          <button onClick={this.handleOpenDocument} ref={el => this.openButton = el}>{tr("~SAGEMODELER.OPEN_OR_CREATE.OPEN_DOC")}</button>
         </div>
         <div>
-          <button onClick={this.handleClose}>Create New Document</button>
+          <button onClick={this.handleClose}>{tr("~SAGEMODELER.OPEN_OR_CREATE.NEW_DOC")}</button>
         </div>
       </div>
     );
@@ -56,7 +57,7 @@ class OpenOrCreateDialog extends React.Component<OpenOrCreateDialogProps, {}> {
 
 export const showOpenOrCreateDialog = (cfmClient: CFMClient) => {
   cfmClient.showBlockingModal({
-    title: "What would you like to do?",
+    title: tr("~SAGEMODELER.OPEN_OR_CREATE.TITLE"),
     message: <OpenOrCreateDialog cfmClient={cfmClient} />,
     onDrop: () => cfmClient.hideBlockingModal()
   });
