@@ -11,7 +11,12 @@
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "dev:proxy": "ts-node src/devproxy/index.ts",
     "dev:server": "webpack-dev-server --https --inline --hot --port=10001 --content-base dist/",
-    "dev:browse": "opener https://localhost:10000/"
+    "dev:browse": "opener https://localhost:10000/",
+    "strings:build": "./node_modules/.bin/strip-json-comments src/code/utils/lang/en-US-master.json > src/code/utils/lang/en-US.json",
+    "strings:pull:usage": "echo Usage: `npm run strings:pull -- -a <poeditor_api_key>`",
+    "strings:pull": "./bin/strings-pull-project.sh",
+    "strings:push:usage": "echo Usage: `npm run strings:push -- -a <poeditor_api_key>`",
+    "strings:push": "./bin/strings-push-project.sh"
   },
   "repository": {
     "type": "git",
@@ -48,6 +53,7 @@
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "script-loader": "^0.7.2",
+    "strip-json-comments-cli": "^1.0.1",
     "style-loader": "^0.23.0",
     "ts-loader": "^5.2.1",
     "ts-node": "^7.0.1",
