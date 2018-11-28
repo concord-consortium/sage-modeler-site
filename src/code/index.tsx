@@ -85,7 +85,8 @@ const options = {
           window.location.search = queryString.stringify(newParams);
         }
       }
-    }
+    },
+    newFileAddsNewToQuery: true
   },
 };
 
