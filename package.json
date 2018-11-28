@@ -46,7 +46,7 @@
     "mime2": "0.0.5",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.4",
-    "npm-run-all": "^4.1.3",
+    "npm-run-all": "^4.1.5",
     "opener": "^1.5.1",
     "postcss-loader": "^3.0.0",
     "query-string": "^6.2.0",
