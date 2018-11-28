@@ -19,12 +19,14 @@ module.exports = (env, argv) => {
           tag: packageJSON.version
         },
         buildInfoString = `${buildInfo.date} ${buildInfo.tag}`,
-        cfmUrl = devMode ? "/cfm" : "https://cloud-file-manager.concord.org/branch/master";
+        cfmUrl = devMode ? "/cfm" : "https://cloud-file-manager.concord.org/branch/master",
+        codapUrl = devMode ? "/codap/static/dg/en/cert/index.html" : "/~dmartin/travis4/static/dg/en/cert/index.html",
+        sageUrl = devMode ? "/sage" : "https://sage.concord.org/branch/master";
 
   return {
     context: __dirname, // to automatically find tsconfig.json
     devtool: 'source-map',
-    entry: './src/code/app.tsx',
+    entry: './src/code/index.tsx',
     mode: 'development',
     output: {
       path: __dirname + (devMode ? "/dev" : "/dist"),
@@ -109,16 +111,8 @@ module.exports = (env, argv) => {
         __VERSION__: buildInfo.tag,
         __BUILD_DATE__: buildInfo.date,
         __CFM_URL__: cfmUrl,
-      }),
-      new HtmlWebpackPlugin({
-        inject: false,
-        filename: 'app.html',
-        template: 'src/templates/app.html.ejs',
-        __BUILD_INFO__: buildInfoString,
-        __ENVIRONMENT__: environment,
-        __VERSION__: buildInfo.tag,
-        __BUILD_DATE__: buildInfo.date,
-        __CFM_URL__: cfmUrl,
+        __CODAP_URL__: codapUrl,
+        __SAGE_URL__: sageUrl
       }),
       new CopyWebpackPlugin([{
         from: 'src/assets',
