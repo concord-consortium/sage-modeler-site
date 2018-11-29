@@ -90,6 +90,12 @@ const options = {
   },
 };
 
+// remove #new from url
+const isNewedFile = window.location.hash === "#new";
+if (isNewedFile && window.history.replaceState) {
+  window.history.replaceState("", document.title, window.location.pathname + window.location.search);
+}
+
 CloudFileManager.createFrame(options, "app", event => {
   if (event.type === "rendered") {
     const client = event.data.client;
@@ -111,7 +117,7 @@ CloudFileManager.createFrame(options, "app", event => {
 
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
-      if (window.location.hash.length < 2) {
+      if ((window.location.hash.length < 2) && !isNewedFile) {
         showOpenOrCreateDialog(client);
       }
     };
