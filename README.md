@@ -25,6 +25,14 @@ In production mode CloudFront provides the proxying.
 If you want to build a local version run `npm build`, it will create the files in the `dist` folder.
 You *do not* need to build to deploy the code, that is automatic.  See more info in the Deployment section below.
 
+
+### Translation strings
+
+This project shares a POEditor project with https://github.com/concord-consortium/building-models.
+Please use https://github.com/concord-consortium/building-models repository to add a new strings, update strings
+in POEditor using provided scripts, and finally copy over all the JSON files from building-models.
+Note that you should push the same changes to both repositories, so they stay in sync. 
+
 ### Notes
 
 1. Make sure if you are using Visual Studio Code that you use the workspace version of TypeScript.
