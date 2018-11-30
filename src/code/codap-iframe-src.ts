@@ -23,7 +23,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   }
 
   const sageModelerParams = encodeURIComponent("?standalone=true");
-  return `${codap}?standalone=true&embeddedMode=yes&hideSplashScreen=yes&hideWebViewLoading=yes&cfmBaseUrl=${cfmBaseUrl}&di=${di}${sageModelerParams}`;
+  return `${codap}?standalone=true&embeddedMode=yes&hideSplashScreen=yes&hideWebViewLoading=yes&hideUndoRedoInComponent=yes&cfmBaseUrl=${cfmBaseUrl}&di=${di}${sageModelerParams}`;
 };
 
 export const codapIframeSrc = iframeSrc({
