@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
           tag: packageJSON.version
         },
         buildInfoString = `${buildInfo.date} ${buildInfo.tag}`,
-        cfmUrl = "/cfm",
+        cfmUrl = devMode ? "/cfm" : "/cfm/branch/added-rename-guard",
         codapUrl = devMode ? "/codap/static/dg/en/cert/index.html" : "/releases/staging/static/dg/en/cert/index.html",
         sageUrl = devMode ? "/sage" : "/sage/branch/master";
 
