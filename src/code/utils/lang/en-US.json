@@ -1,17 +1,4 @@
 {
-                                        
-                                                                                                                   
-                                                
-                                                                                                               
-                                         
-    "~SAGEMODELER.MENU.CLOSE": "Close",
-    "~SAGEMODELER.MENU.IMPORT": "Import...",
-    "~SAGEMODELER.OPEN_OR_CREATE.TITLE": "What would you like to do?",
-    "~SAGEMODELER.OPEN_OR_CREATE.OPEN_DOC": "Open Document or Browse Examples",
-    "~SAGEMODELER.OPEN_OR_CREATE.NEW_DOC": "Create New Document",
-                                               
-
-                                                                                
     "~MENU.SAVE": "Save …",
     "~MENU.OPEN": "Open …",
     "~MENU.NEW": "New …",
@@ -19,11 +6,14 @@
     "~MENU.REVERT_TO_ORIGINAL": "Revert To Original",
     "~MENU.REVERT_TO_LAST_SAVE": "Revert To Last Save",
     "~MENU.UNTITLED_MODEL": "Untitled model",
+
     "~GOOGLE_SAVE.TITLE": "Save Document",
     "~GOOGLE_SAVE.MAKE_PUBLIC": "make public (read-only)",
+
     "~OPEN_IN_CODAP.TITLE": "Open in CODAP",
     "~OPEN_IN_CODAP.DISABLED": "Please save your diagram before opening in CODAP.",
     "~PUBLIC_LINK.OPEN": "Open public link",
+
     "~NODE.UNTITLED": "Untitled",
     "~NODE.SIMULATION.VALUE": "Value",
     "~NODE-EDIT.TITLE": "Name",
@@ -34,6 +24,8 @@
     "~NODE-EDIT.REMOTE": "Remote",
     "~NODE-EDIT.ADD_REMOTE": "Add remote",
     "~NODE-EDIT.DELETE": "Delete",
+
+                                         
     "~NODE-VALUE-EDIT.INITIAL-VALUE": "Initial Value",
     "~NODE-VALUE-EDIT.DEFINING_WITH_NUMBERS": "You are defining values with numbers.",
     "~NODE-VALUE-EDIT.DEFINING_WITH_WORDS": "You are defining values with words.",
@@ -47,6 +39,8 @@
     "~NODE-VALUE-EDIT.LOW": "Low",
     "~NODE-VALUE-EDIT.HIGH": "High",
     "~NODE-VALUE-EDIT.DEPENDENT_VARIABLE": "This node is a dependent variable",
+
+                                       
     "~NODE-RELATION-EDIT.COMBINATION_METHOD": "Combine variables using:",
     "~NODE-RELATION-EDIT.ARITHMETIC_MEAN": "average",
     "~NODE-RELATION-EDIT.SCALED_PRODUCT": "limiting factor",
@@ -70,6 +64,7 @@
     "~NODE-RELATION-EDIT.IS": "is",
     "~NODE-RELATION-EDIT.ADDED_TO": "added to",
     "~NODE-RELATION-EDIT.SUBTRACTED_FROM": "subtracted from",
+    "~NODE-RELATION-EDIT.SETS_INITIAL": "sets the initial value of",
     "~NODE-RELATION-EDIT.TRANSFERRED_TO": "transferred to",
     "~NODE-RELATION-EDIT.EACH": "each",
     "~NODE-RELATION-EDIT.ALL": "All",
@@ -79,27 +74,47 @@
     "~NODE-RELATION-EDIT.A_LITTLE_BIT": "A little bit",
     "~NODE-RELATION-EDIT.OF": "of",
     "~NODE-RELATION-EDIT.WILL_FLOW_TO": "will flow to",
+
+    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_MORE": "more",
+    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_LESS": "fewer/less",
+
+    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_A": "More %{sourceTitle} means",
+    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_B": " will be transferred to %{targetTitle} each ",
+
+    "~NODE-RELATION-EDIT.VARIABLE_FLOW_TARGET_A": "More %{targetTitle} means",
+    "~NODE-RELATION-EDIT.VARIABLE_FLOW_TARGET_B": " %{sourceTitle} will be transferred each ",
+
     "~TRANSFER_NODE.TITLE": "flow from %{sourceTitle} to %{targetTitle}",
+
     "~LINK-EDIT.DELETE": "✖ Delete Link",
     "~LINK-EDIT.TITLE": "Title",
     "~LINK-EDIT.COLOR": "Color",
+
     "~ADD-NEW-IMAGE.TITLE": "Add new image",
     "~ADD-NEW-IMAGE.IMAGE-SEARCH-TAB": "Image Search",
     "~ADD-NEW-IMAGE.MY-COMPUTER-TAB": "My Computer",
     "~ADD-NEW-IMAGE.LINK-TAB": "Link",
+
+                                      
     "~PALETTE-INSPECTOR.ADD_IMAGE": "New Image",
     "~PALETTE-INSPECTOR.ADD_IMAGE_SHORT": "New",
     "~PALETTE-INSPECTOR.ABOUT_IMAGE": "About This Image",
     "~PALETTE-INSPECTOR.DELETE": "Delete Image",
     "~PALETTE-INSPECTOR.REPLACE": "Replace Image",
+
+                                   
     "~PALETTE-DIALOG.TITLE": "Delete image?",
     "~PALETTE-DIALOG.DELETE": "Delete",
     "~PALETTE-DIALOG.REPLACE": "and replace with",
     "~PALETTE-DIALOG.OK": "ok",
     "~PALETTE-DIALOG.CANCEL": "✖ cancel",
+
+                                   
     "~METADATA.TITLE": "Title",
     "~METADATA.LINK": "Link",
     "~METADATA.CREDIT": "Credit",
+
+                                  
     "~IMAGE-BROWSER.PREVIEW": "Preview Your Image",
     "~IMAGE-BROWSER.ADD_IMAGE": "Add Image",
     "~IMAGE-BROWSER.SEARCH_HEADER": "Search for images",
@@ -113,6 +128,7 @@
     "~IMAGE-BROWSER.ALREADY-IN-PALETTE": "Already in palette",
     "~IMAGE-BROWSER.PREVIOUS": "‹ Previous",
     "~IMAGE-BROWSER.NEXT": "Next ›",
+
     "~IMAGE-BROWSER.PLEASE_DROP_IMAGE": "Please drop an image or enter an image url",
     "~IMAGE-BROWSER.DROP_IMAGE_FROM_BROWSER": "Drop image from browser here",
     "~IMAGE-BROWSER.TYPE_OR_PASTE_LINK": "Or type or paste a link to the image you want to use:",
@@ -122,6 +138,7 @@
     "~IMAGE-BROWSER.DROP_IMAGE_FROM_DESKTOP": "Drop image from desktop here",
     "~IMAGE-BROWSER.CHOOSE_FILE": "Or choose a file from your desktop:",
     "~IMAGE-BROWSER.PROVIDER_MESSAGE": "Image search courtesy of openclipart.org",
+
     "~COLOR.YELLOW": "Yellow",
     "~COLOR.DARK_BLUE": "Dark Blue",
     "~COLOR.LIGHT_BLUE": "Light Blue",
@@ -130,6 +147,8 @@
     "~COLOR.LIGHT_GRAY": "Light Gray",
     "~COLOR.MEDIUM_GRAY": "Gray",
     "~COLOR.DATA": "Codap Orange",
+
+                            
     "~FILE.CHECKING_AUTH": "Checking authorization...",
     "~FILE.CONFIRM": "Are you sure?",
     "~FILE.DOWNLOADING": "Downloading...",
@@ -137,6 +156,7 @@
     "~FILE.UPLOADING": "Uploading...",
     "~FILE.CONFIRM_ORIGINAL_REVERT": "Are you sure you want to revert to the original version?",
     "~FILE.CONFIRM_LAST_SAVE_REVERT": "Are you sure you want to revert to the last save?",
+
     "~DOCUMENT.ACTIONS.SIMULATE": "Simulate",
     "~DOCUMENT.ACTIONS.RUN": "Run",
     "~DOCUMENT.ACTIONS.DATA.RECORD-1": "Record 1",
@@ -151,20 +171,41 @@
     "~DOCUMENT.ACTIONS.UNDO": "Undo",
     "~DOCUMENT.ACTIONS.REDO": "Redo",
     "~DOCUMENT.ACTIONS.NO_DEFINED_LINKS": "There must be at least one link with a defined relationship.",
+
+                             
+    "~DOCUMENT.CODAP_ACTIONS.TABLES": "Tables",
+    "~DOCUMENT.CODAP_ACTIONS.TABLES.NEW": "New Table",
+    "~DOCUMENT.CODAP_ACTIONS.TABLES.DELETE_CONFIRM": "Are you sure you want to delete \"%{tableName}\"?",
+    "~DOCUMENT.CODAP_ACTIONS.TABLES.ATTRIBUTE_NAME": "AttributeName",
+    "~DOCUMENT.CODAP_ACTIONS.GRAPH": "Graph",
+    "~DOCUMENT.CODAP_ACTIONS.TEXT": "Text",
+
     "~SIMULATION.SIMULATION_SETTINGS": "Simulation Settings",
+    "~SIMULATION.VIEW_SETTINGS": "View settings",
     "~SIMULATION.STEP_UNIT": "Each calculation is 1",
     "~SIMULATION.DURATION": "Calculations per run",
     "~SIMULATION.CAP_VALUES": "Limit values to min/max range",
+    "~SIMULATION.COMPLEXITY.DIAGRAM_ONLY": "Model diagram",
+    "~SIMULATION.COMPLEXITY.STATIC": "Static equilibrium simulation",
+    "~SIMULATION.COMPLEXITY.TIME": "Dynamic time-based simulation",
+    "~SIMULATION.COMPLEXITY.BASIC": "Basic relationships",
+    "~SIMULATION.COMPLEXITY.EXPANDED": "Expanded set of relationships",
     "~SIMULATION.RELATIONSHIP_SYMBOLS": "Show relationship symbols",
+
     "~DROP.ONLY_IMAGES_ALLOWED": "Sorry, only images are allowed.",
+    "~DROP.ONLY_ALLOWED_IF_IFRAMED": "Sorry, dropping items of this type is only allowed if iframed.",
+
     "~DROPZONE.DROP_IMAGES_HERE": "Drop image here",
     "~DROPZONE.SQUARES_LOOK_BEST": "(Squares look best.)",
+
     "~RELATIONSHIP.NO_RELATION": "No relation defined",
+
     "~CODAP.INTERACTIVE_FRAME.TITLE": "SageModeler",
     "~CODAP.SIMULATION.RUN": "run",
     "~CODAP.SIMULATION.EXPERIMENT": "Exp.#",
     "~CODAP.SIMULATION.STEPS": "steps",
     "~CODAP.SIMULATION.STEPS.DESCRIPTION": "Number of steps in the simulation.",
+
     "~TIME.STEP": "Step",
     "~TIME.SECOND": "Second",
     "~TIME.MINUTE": "Minute",
@@ -173,6 +214,7 @@
     "~TIME.WEEK": "Week",
     "~TIME.MONTH": "Month",
     "~TIME.YEAR": "Year",
+
     "~TIME.STEP.PLURAL": "Steps",
     "~TIME.SECOND.PLURAL": "Seconds",
     "~TIME.MINUTE.PLURAL": "Minutes",
@@ -181,19 +223,11 @@
     "~TIME.WEEK.PLURAL": "Weeks",
     "~TIME.MONTH.PLURAL": "Months",
     "~TIME.YEAR.PLURAL": "Years",
-    "~SIMULATION.VIEW_SETTINGS": "View settings",
-    "~SIMULATION.COMPLEXITY.DIAGRAM_ONLY": "Model diagram",
-    "~SIMULATION.COMPLEXITY.BASIC": "Basic relationships",
-    "~SIMULATION.COMPLEXITY.EXPANDED": "Expanded set of relationships",
-    "~NODE-RELATION-EDIT.SETS_INITIAL": "sets the initial value of",
-    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_MORE": "more",
-    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_LESS": "fewer/less",
-    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_A": "More %{sourceTitle} means",
-    "~NODE-RELATION-EDIT.VARIABLE_FLOW_SOURCE_B": " will be transferred to %{targetTitle} each ",
-    "~NODE-RELATION-EDIT.VARIABLE_FLOW_TARGET_A": "More %{targetTitle} means",
-    "~NODE-RELATION-EDIT.VARIABLE_FLOW_TARGET_B": " %{sourceTitle} will be transferred each ",
-    "~SIMULATION.COMPLEXITY.STATIC": "Static equilibrium simulation",
-    "~SIMULATION.COMPLEXITY.TIME": "Dynamic time-based simulation",
-    "~DROP.ONLY_ALLOWED_IF_IFRAMED": "Sorry, dropping items of this type is only allowed if iframed."
+
+    "~SAGEMODELER.MENU.CLOSE": "Close",
+    "~SAGEMODELER.MENU.IMPORT": "Import...",
+    "~SAGEMODELER.OPEN_OR_CREATE.TITLE": "What would you like to do?",
+    "~SAGEMODELER.OPEN_OR_CREATE.OPEN_DOC": "Open Document or Browse Examples",
+    "~SAGEMODELER.OPEN_OR_CREATE.NEW_DOC": "Create New Document"
 }
 
