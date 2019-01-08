@@ -1,4 +1,5 @@
-import { urlParams } from "./utils/url-params";
+import { urlParams, parsedParams } from "./utils/url-params";
+import { stringify } from "query-string";
 
 interface CodapParamsOptions {
   codap: string;
@@ -22,8 +23,28 @@ const iframeSrc = (options: CodapParamsOptions) => {
     }
   }
 
-  const sageModelerParams = encodeURIComponent("?standalone=true");
-  return `${codap}?standalone=true&embeddedMode=yes&hideSplashScreen=yes&hideWebViewLoading=yes&hideUndoRedoInComponent=yes&cfmBaseUrl=${cfmBaseUrl}&di=${di}${sageModelerParams}`;
+  const codapParams = {
+    standalone: "true",
+    embeddedMode: "yes",
+    hideSplashScreen: "yes",
+    hideWebViewLoading: "yes",
+    hideUndoRedoInComponent: "yes",
+    cfmBaseUrl
+  };
+  const sageParams = {
+    standalone: "true"
+  };
+
+  Object.keys(parsedParams).forEach((key) => {
+    const match = key.match(/^(codap|sage):(.+)$/i);
+    if (match) {
+      const params = match[1] === "codap" ? codapParams : sageParams;
+      params[match[2]] = parsedParams[key];
+    }
+  });
+
+  const diParams = encodeURIComponent(`?${stringify(sageParams)}`);
+  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}`;
 };
 
 export const codapIframeSrc = iframeSrc({
