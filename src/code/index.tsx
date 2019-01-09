@@ -9,8 +9,18 @@ const CloudFileManager = (window as any).CloudFileManager;
 
 import "../styles/index.sass";
 
+let inIframe = false;
+try {
+  inIframe = window.top !== window.self;
+} catch (e) {
+  inIframe = false;
+}
+
+const selfUrl = `${window.location.origin}${window.location.pathname}`;
+
 const options = {
   app: codapIframeSrc,
+  hideMenuBar: inIframe,
   autoSaveInterval: 5,
   mimeType: "application/json",
   appName: "SageModeler",
@@ -86,7 +96,11 @@ const options = {
         }
       }
     },
-    newFileAddsNewToQuery: true
+    newFileAddsNewToQuery: true,
+    shareDialog: {
+      serverUrl: selfUrl,
+      serverUrlLabel: tr("~SAGEMODELER.SHARE_DIALOG.SERVER_URL")
+    }
   },
 };
 
