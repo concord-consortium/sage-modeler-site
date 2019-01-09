@@ -8,3 +8,4 @@ interface UrlParams {
 }
 
 export const urlParams: UrlParams = queryString.parse(window.location.search);
+export const parsedParams = queryString.parse(window.location.search);
