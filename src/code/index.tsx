@@ -99,7 +99,7 @@ const options = {
     newFileAddsNewToQuery: true,
     shareDialog: {
       serverUrl: selfUrl,
-      serverUrlLabel: tr("~SAGEMODELER.SHARE_DIALOG_SERVER_URL")
+      serverUrlLabel: tr("~SAGEMODELER.SHARE_DIALOG.SERVER_URL")
     }
   },
 };
