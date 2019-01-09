@@ -1,5 +1,19 @@
 # SageModeler Site
 
+## Passing parameters to Sage and CODAP
+
+To pass parameters to the embedded CODAP and Sage instances prefix the parameter with either `codap:` or `sage:`.  The prefix will be stripped from the parameter and placed into the correct url location.
+
+Examples:
+
+To hide the inspector panel in Sage use:
+
+`?sage:hide=inspectorPanel`
+
+To set the guide index in CODAP use:
+
+`?codap:guideIndex=1`
+
 ## Development
 
 ### Initial steps
@@ -31,7 +45,7 @@ You *do not* need to build to deploy the code, that is automatic.  See more info
 This project shares a POEditor project with https://github.com/concord-consortium/building-models.
 Please use https://github.com/concord-consortium/building-models repository to add a new strings, update strings
 in POEditor using provided scripts, and finally copy over all the JSON files from building-models.
-Note that you should push the same changes to both repositories, so they stay in sync. 
+Note that you should push the same changes to both repositories, so they stay in sync.
 
 ### Notes
 

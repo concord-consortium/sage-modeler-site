@@ -1,5 +1,4 @@
 import { showOpenOrCreateDialog } from "./components/open-or-create";
-import { showAbout } from "./components/about";
 import { codapIframeSrc } from "./codap-iframe-src";
 import { urlParams } from "./utils/url-params";
 import { tr } from "./utils/translate";
@@ -73,9 +72,6 @@ const options = {
     menu: CloudFileManager.DefaultMenu,
     menuBar: {
       info: (window as any).SageModelerBuildConfig.appVersion,
-      onInfoClicked: () => {
-        showAbout();
-      },
       languageMenu: {
         currentLang: urlParams.lang || "en-US",
         options: [
