@@ -39,7 +39,8 @@ const options = {
     {
       "name": "readOnly",
       "displayName": "Examples",
-      "src": "examples.json"
+      "urlDisplayName": "examples",
+      "src": "//s3.amazonaws.com/models-resources/sagemodeler-examples/index.json"
     },
     {
       "name": "lara",

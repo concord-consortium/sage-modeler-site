@@ -1,0 +1,8 @@
+[
+  {
+    "name": "First Example",
+    "description": "This should be replaced",
+    "location": "//s3.amazonaws.com/models-resources/sagemodeler-examples/files/first.json",
+    "mimeType": "application/json"
+  }
+]
