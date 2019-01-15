@@ -44,7 +44,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   });
 
   const diParams = encodeURIComponent(`?${stringify(sageParams)}`);
-  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}&di-override=${di}`;
+  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}&di-override=sage`;
 };
 
 export const codapIframeSrc = iframeSrc({
