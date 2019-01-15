@@ -40,7 +40,7 @@ const options = {
       "name": "readOnly",
       "displayName": "Examples",
       "urlDisplayName": "examples",
-      "src": "//s3.amazonaws.com/models-resources/sagemodeler-examples/index.json"
+      "src": "//s3.amazonaws.com/cc-project-resources/sagemodeler-examples/index.json"
     },
     {
       "name": "lara",

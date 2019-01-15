@@ -17,7 +17,7 @@ To set the guide index in CODAP use:
 ## Adding Examples
 
 1. Capture the JSON and then save it as a file, eg `sample.json`.
-2. Upload `sample.json` to the `sagemodeler-examples/files` folder in the Concord models-resources S3 bucket (https://console.aws.amazon.com/s3/buckets/models-resources/sagemodeler-examples/files/?region=us-east-1)
+2. Upload `sample.json` to the `sagemodeler-examples/files` folder in the Concord cc-project-resources S3 bucket (https://console.aws.amazon.com/s3/buckets/cc-project-resources/sagemodeler-examples/files/?region=us-east-1)
 3. Download the `index.json` file from `sagemodeler-examples` folder on S3 and add the `sample.json` file to the list of files.
    NOTE: the ordering of the files is preserved when showing the examples in the dialog.
 4. Upload the updated `index.json` file to `sagemodeler-examples` on S3
