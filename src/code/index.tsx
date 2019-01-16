@@ -39,7 +39,8 @@ const options = {
     {
       "name": "readOnly",
       "displayName": "Examples",
-      "src": "examples.json"
+      "urlDisplayName": "examples",
+      "src": "//s3.amazonaws.com/cc-project-resources/sagemodeler-examples/index.json"
     },
     {
       "name": "lara",
@@ -127,7 +128,8 @@ CloudFileManager.createFrame(options, "app", event => {
 
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
-      if ((window.location.hash.length < 2) && !isNewedFile) {
+      // and we are not in an iframe (for LARA)
+      if ((window.location.hash.length < 2) && !isNewedFile && !inIframe) {
         showOpenOrCreateDialog(client);
       }
     };
