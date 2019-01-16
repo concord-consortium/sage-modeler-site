@@ -128,7 +128,8 @@ CloudFileManager.createFrame(options, "app", event => {
 
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
-      if ((window.location.hash.length < 2) && !isNewedFile) {
+      // and we are not in an iframe (for LARA)
+      if ((window.location.hash.length < 2) && !isNewedFile && !inIframe) {
         showOpenOrCreateDialog(client);
       }
     };
