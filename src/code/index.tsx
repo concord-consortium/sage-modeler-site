@@ -1,6 +1,6 @@
 import { showOpenOrCreateDialog } from "./components/open-or-create";
 import { codapIframeSrc } from "./codap-iframe-src";
-import { urlParams } from "./utils/url-params";
+import { urlParams, parsedParams } from "./utils/url-params";
 import { tr } from "./utils/translate";
 import * as queryString from "query-string";
 // CFM is added using script tag.
@@ -15,11 +15,15 @@ try {
   inIframe = false;
 }
 
+// the two ways we detect if we are launched from lara is if we are in an iframe
+// or there is a documentServer parameter that is part of the LARA embed parameters
+const launchedFromLara = inIframe || !!parsedParams.documentServer;
+
 const selfUrl = `${window.location.origin}${window.location.pathname}`;
 
 const options = {
   app: codapIframeSrc,
-  hideMenuBar: inIframe,
+  hideMenuBar: launchedFromLara,
   autoSaveInterval: 5,
   mimeType: "application/json",
   appName: "SageModeler",
@@ -128,8 +132,8 @@ CloudFileManager.createFrame(options, "app", event => {
 
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
-      // and we are not in an iframe (for LARA)
-      if ((window.location.hash.length < 2) && !isNewedFile && !inIframe) {
+      // and we are not in an iframe (for LARA) or were launched from LARA
+      if ((window.location.hash.length < 2) && !isNewedFile && !launchedFromLara) {
         showOpenOrCreateDialog(client);
       }
     };
