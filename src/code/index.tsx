@@ -110,6 +110,8 @@ const isNewedFile = window.location.hash === "#new";
 if (isNewedFile && window.history.replaceState) {
   window.history.replaceState("", document.title, window.location.pathname + window.location.search);
 }
+// #copy doesn't have to be removed from URL. CFM will do it itself while loading a copied file.
+const isCopiedFile = window.location.hash.startsWith("#copy");
 
 CloudFileManager.createFrame(options, "app", event => {
   if (event.type === "rendered") {
@@ -133,7 +135,7 @@ CloudFileManager.createFrame(options, "app", event => {
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
       // and we are not in an iframe (for LARA) or were launched from LARA
-      if ((window.location.hash.length < 2) && !isNewedFile && !launchedFromLara) {
+      if ((window.location.hash.length < 2) && !isNewedFile && !launchedFromLara && !isCopiedFile) {
         showOpenOrCreateDialog(client);
       }
     };
