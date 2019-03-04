@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
         buildInfoString = `${buildInfo.date} ${buildInfo.tag}`,
         cfmUrl = devMode ? "/cfm" : "/cfm",
         codapUrl = devMode ? "/codap/static/dg/en/cert/index.html" : "/releases/latest/static/dg/en/cert/index.html",
-        sageUrl = devMode ? "/sage" : "/sage/branch/master";
+        sageUrl = devMode ? "/sage" : "/sage";
 
   return {
     context: __dirname, // to automatically find tsconfig.json
