@@ -95,9 +95,9 @@ where those projects are deployed.  This enables this project to be tested again
 
 The parameters are:
 
-- ?codap=<URL> where URL is the url to the CODAP index.html page
-- ?cfmBaseUrl=<URL> where URL is the url to the /js folder for CFM
-- ?di=<URL> where URL is the url to sage (di is passed to CODAP, it stands for "data interactive")
+- ?codap=<`URL`|`release`> where `URL` is the url to the CODAP index.html page or `release` is the CODAP release folder (example: `build_0473`)
+- ?cfmBaseUrl=<`URL`|`branch`> where `URL` is the url to the /js folder for CFM or `branch` is the deployed CFM branch (example: `fix-example-loads-in-codap`)
+- ?di=<`URL`|`branch`> where `URL` is the url to Sage (di is passed to CODAP, it stands for "data interactive") or `branch` is the deployed Sage branch (example: `164295027-default-to-zero`)
 
 ### Testing
 
