@@ -82,6 +82,7 @@ const options = {
         options: [
           {langCode: "en-US", label: "English"},
           {langCode: "es", label: "Español"},
+          {langCode: "el", label: "Ελληνικά"},
           {langCode: "he", label: "עברית"},
           {langCode: "tr", label: "Türkçe"},
           {langCode: "zh", label: "中文"}
