@@ -105,6 +105,20 @@ const options = {
   },
 };
 
+// if there is no lang parameter redirect to the browser's language if it isn't English
+if (!urlParams.lang) {
+  const {language} = navigator;
+  const twoLetterCode = language.replace(/-.*$/, "");
+  const langOption = options.ui.menuBar.languageMenu.options.find((option) => {
+    return (option.langCode === language) || (option.langCode === twoLetterCode);
+  });
+  if (!!langOption && (twoLetterCode !== "en")) {
+    const hash = window.location.hash.length > 1 ? window.location.hash : "";
+    urlParams.lang = langOption.langCode;
+    window.location.replace(`?${queryString.stringify(urlParams)}${hash}`);
+  }
+}
+
 // remove #new from url
 const isNewedFile = window.location.hash === "#new";
 if (isNewedFile && window.history.replaceState) {
