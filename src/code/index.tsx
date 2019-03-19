@@ -80,11 +80,11 @@ const options = {
       languageMenu: {
         currentLang: urlParams.lang || "en-US",
         options: [
-          {langCode: "en-US", flag: "us"},
-          {langCode: "es", flag: "es"},
-          {langCode: "he", flag: "il"},
-          {langCode: "tr", flag: "tr"},
-          {langCode: "zh", flag: "tw"}
+          {langCode: "en-US", label: "English"},
+          {langCode: "es", label: "Español"},
+          {langCode: "he", label: "עברית"},
+          {langCode: "tr", label: "Türkçe"},
+          {langCode: "zh", label: "中文"}
         ],
         onLangChanged: langCode => {
           const newParams = Object.assign({}, urlParams);
