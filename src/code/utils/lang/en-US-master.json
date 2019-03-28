@@ -6,6 +6,9 @@
     "~MENU.REVERT_TO_ORIGINAL": "Revert To Original",
     "~MENU.REVERT_TO_LAST_SAVE": "Revert To Last Save",
     "~MENU.UNTITLED_MODEL": "Untitled model",
+    "~MENU.ABOUT": "About",
+    "~MENU.ABOUT.HELP": "Go to Help website",
+    "~MENU.ABOUT.ABOUT": "About SageModeler",
 
     "~GOOGLE_SAVE.TITLE": "Save Document",
     "~GOOGLE_SAVE.MAKE_PUBLIC": "make public (read-only)",
@@ -159,6 +162,7 @@
 
     "~DOCUMENT.ACTIONS.SIMULATE": "Simulate",
     "~DOCUMENT.ACTIONS.RUN": "Run",
+    "~DOCUMENT.ACTIONS.EXPERIMENT_NUM": "Experiment #",
     "~DOCUMENT.ACTIONS.DATA.RECORD-1": "Record 1",
     "~DOCUMENT.ACTIONS.DATA.POINT": "Data Point",
     "~DOCUMENT.ACTIONS.DATA.RECORD": "Record",
