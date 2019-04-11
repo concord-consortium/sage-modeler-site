@@ -55,7 +55,13 @@ const options = {
     },
     {
       "name": "googleDrive",
-      "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com"
+      "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/drive.file",
+        "https://www.googleapis.com/auth/drive.install",
+        "https://www.googleapis.com/auth/drive.metadata.readonly",
+        "https://www.googleapis.com/auth/userinfo.profile"
+      ]
     },
     {
       "name": "documentStore",
@@ -82,6 +88,7 @@ const options = {
         options: [
           {langCode: "en-US", label: "English"},
           {langCode: "es", label: "Español"},
+          {langCode: "el", label: "Ελληνικά"},
           {langCode: "he", label: "עברית"},
           {langCode: "tr", label: "Türkçe"},
           {langCode: "zh", label: "中文"}

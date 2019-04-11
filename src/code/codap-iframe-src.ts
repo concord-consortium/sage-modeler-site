@@ -23,6 +23,17 @@ const iframeSrc = (options: CodapParamsOptions) => {
     }
   }
 
+  // assume release/branch names for params without slashes
+  if (codap.indexOf("/") === -1) {
+    codap = `/releases/${codap}/static/dg/en/cert/index.html`;
+  }
+  if (di.indexOf("/") === -1) {
+    di = `/sage/branch/${di}/sage.html`;
+  }
+  if (cfmBaseUrl.indexOf("/") === -1) {
+    cfmBaseUrl = `/cfm/branch/${cfmBaseUrl}/js`;
+  }
+
   const codapParams = {
     standalone: "true",
     embeddedMode: "yes",
