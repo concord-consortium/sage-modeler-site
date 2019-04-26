@@ -189,7 +189,7 @@ h6 {font-size: 16px;line-height: 28px;margin-bottom: 20px;}
 .lead-image img {position: absolute;width: 100%;margin: auto;top: -100%;bottom: -100%;left: -100%;right: -100%;}
 .page-title {bottom: 0;padding: 0;color: #fff;position: absolute;}
 .page-title h1 {font-size: 64px;margin-top: 58px;margin-bottom: 40px;}
-@font-face {font-family: "icomoon";src: url("../concord-microsites/assets/fonts/icomoon.eot");src: url("../concord-microsites/fonts/icomoon.eot") format("embedded-opentype"),url("../concord-microsites/fonts/icomoon.woff2") format("woff2"),url("../concord-microsites/fonts/icomoon.ttf") format("truetype"),url("../concord-microsites/fonts/icomoon.woff") format("woff"),url("../concord-microsites/fonts/icomoon.svg") format("svg");font-weight: normal;font-style: normal;}
+@font-face {font-family: "icomoon";src: url("concord-microsites/assets/fonts/icomoon.eot");src: url("concord-microsites/fonts/icomoon.eot") format("embedded-opentype"),url("concord-microsites/fonts/icomoon.woff2") format("woff2"),url("concord-microsites/fonts/icomoon.ttf") format("truetype"),url("concord-microsites/fonts/icomoon.woff") format("woff"),url("concord-microsites/fonts/icomoon.svg") format("svg");font-weight: normal;font-style: normal;}
 [class^="icon-"], [class*=" icon-"], .learn-portal__link:after {font-family: "icomoon" !important;speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;display: inline-block;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 .icon-expand:before, .accordion-collapsed .icon-accordion-status:before {content: "";}
 .icon-copy-link:before {content: "";}
@@ -215,7 +215,7 @@ h6 {font-size: 16px;line-height: 28px;margin-bottom: 20px;}
 .icon-social-twitter:before {content: "";}
 .icon-special-link-arrow:before {content: "";}
 .icon-video-play:before {content: "";}
-@font-face {font-family: "icomoon";src: url("../concord-microsites/assets/fonts/icomoon.eot");src: url("../concord-microsites/fonts/icomoon.eot") format("embedded-opentype"),url("../concord-microsites/fonts/icomoon.woff2") format("woff2"),url("../concord-microsites/fonts/icomoon.ttf") format("truetype"),url("../concord-microsites/fonts/icomoon.woff") format("woff"),url("../concord-microsites/fonts/icomoon.svg") format("svg");font-weight: normal;font-style: normal;}
+@font-face {font-family: "icomoon";src: url("concord-microsites/assets/fonts/icomoon.eot");src: url("concord-microsites/fonts/icomoon.eot") format("embedded-opentype"),url("concord-microsites/fonts/icomoon.woff2") format("woff2"),url("concord-microsites/fonts/icomoon.ttf") format("truetype"),url("concord-microsites/fonts/icomoon.woff") format("woff"),url("concord-microsites/fonts/icomoon.svg") format("svg");font-weight: normal;font-style: normal;}
 [class^="icon-"], [class*=" icon-"], .learn-portal__link:after {font-family: "icomoon" !important;speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;display: inline-block;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 .icon-expand:before, .accordion-collapsed .icon-accordion-status:before {content: "";}
 .icon-copy-link:before {content: "";}
