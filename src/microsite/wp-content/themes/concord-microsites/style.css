@@ -111,7 +111,7 @@ input.placeholder {color: rgba(49,49,49,.25);}
 .color-link {color: #ea6d2f;}
 dd {margin: 0 0 0 40px;}
 ul, ol {padding: 0 10px 10px 30px;font-family: museo-sans,sans-serif;line-height: 1.8em;}
-ul li {background: transparent 0 10px no-repeat;padding: 0 0 20px 0;font-family: museo-sans,sans-serif;font-weight: 300;}
+ul li {background: transparent 0 10px no-repeat;padding: 0 0 0 0;font-family: museo-sans,sans-serif;font-weight: 300;}
 ol li {list-style: decimal;margin: 0 0 0 10px;padding: 0 0 20px 0;}
 nav ul, nav ol, nav li {background: none;margin: 0;padding: 0;font-weight: normal;}
 table {margin: 0 0 1.5em;width: 100%;}
@@ -388,8 +388,8 @@ h6 {font-size: 16px;line-height: 28px;margin-bottom: 20px;}
 .main-nav-item a {color: #313131;border-bottom: 2px solid transparent;font-weight: 500;-webkit-transition: all .2s ease-in-out;-moz-transition: all .2s ease-in-out;-ms-transition: all .2s ease-in-out;-o-transition: all .2s ease-in-out;transition: all .2s ease-in-out;}
 .main-nav-item:hover .main-nav-dropdown, .main-nav-item.current-menu-item .main-nav-dropdown {left: 0;opacity: 1;top: 27px;transition: .2s;z-index: 100;}
 .main-nav-item:hover > a, .main-nav-item.current-menu-item > a {border-color: #ffc320;padding: 0 0 8px 0;cursor: pointer;}
-.main-nav-item a[href="https://sagemodeler.concord.org/branch/move-to-app-folder/app/"] {border: solid 2px #ea6d2f;color: #ea6d2f !important;padding: 10px 20px;text-decoration: none !important;}
-.main-nav-item a[href="https://sagemodeler.concord.org/branch/move-to-app-folder/app/"]:hover {background: #ea6d2f;color: #fff !important;}
+.main-nav-item a[href="https://sagemodeler.concord.org/app/"] {border: solid 2px #ea6d2f;color: #ea6d2f !important;padding: 10px 20px;text-decoration: none !important;}
+.main-nav-item a[href="https://sagemodeler.concord.org/"]:hover {background: #ea6d2f;color: #fff !important;}
 .main-nav-dropdown {padding: 0;padding: 20px;background: none;margin: 0;list-style: none;opacity: 0;min-width: 200px;background-color: #ffc320;transition: .2s;position: absolute;z-index: -1;}
 .main-nav-dropdown .main-nav-dropdown__item a {-webkit-transition: color .2s;-moz-transition: color .2s;-ms-transition: color .2s;-o-transition: color .2s;transition: color .2s;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;color: #fff;font-size: 15px;font-weight: bold;}
 .main-nav-dropdown .main-nav-dropdown__item a:hover {color: #313131;}
@@ -725,8 +725,8 @@ figcaption {text-align: center;font-size: 15px;}
 	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain .mobile-expand span:last-child {transform: rotate(90deg);position: relative;top: -3px;}
 	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain a {display: block;color: #080d09;padding: 20px 0;border-bottom: 2px dotted rgba(49,49,49,.25);opacity: 1;margin: 0;}
 	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain a:hover {opacity: .7;}
-	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain a[href="https://sagemodeler.concord.org/branch/move-to-app-folder/app/"] {border: none;color: #313131 !important;padding: 20px 0;}
-	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain a[href="https://sagemodeler.concord.org/branch/move-to-app-folder/app/"]:hover {background: transparent;color: #313131 !important;}
+	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain a[href="https://sagemodeler.concord.org/"] {border: none;color: #313131 !important;padding: 20px 0;}
+	body[data-mobile-nav="open"] .mobile-overlay .main-nav-contain a[href="https://sagemodeler.concord.org/"]:hover {background: transparent;color: #313131 !important;}
 	body[data-mobile-nav="open"] .mobile-overlay.admin-bar .main-nav-contain {top: 200px;}
 	body.noscroll, html.noscroll {overflow-y: hidden;}
 	.page-nav-dropdown__title {color: #fff;padding: 20px 30px;display: block;-webkit-transition: .2s ease-in-out;-moz-transition: .2s ease-in-out;-ms-transition: .2s ease-in-out;-o-transition: .2s ease-in-out;transition: .2s ease-in-out;}
