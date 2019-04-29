@@ -73,7 +73,8 @@
       sageUrl: "<%= htmlWebpackPlugin.options.__SAGE_URL__%>"
     }
     // Render splash screen.
-    showSplashScreen(SageModelerBuildConfig.appVersion, SageModelerBuildConfig.buildDate);
+    setSageVersionInfo(SageModelerBuildConfig.appVersion, SageModelerBuildConfig.buildDate)
+    showSplashScreen(4, true);
   </script>
 
   <!-- Cloud File Manager! -->
