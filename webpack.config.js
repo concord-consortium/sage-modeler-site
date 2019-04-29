@@ -118,6 +118,11 @@ module.exports = (env, argv) => {
         from: 'src/assets',
         to: ''
       }]),
+      // splashscreen.js in building-models uses app relative `img/logo.png` url
+      new CopyWebpackPlugin([{
+        from: 'src/assets/img',
+        to: 'app/img'
+      }]),
       new CopyWebpackPlugin([{
         from: 'src/microsite',
         to: ''

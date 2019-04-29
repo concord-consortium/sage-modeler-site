@@ -73,8 +73,22 @@
       sageUrl: "<%= htmlWebpackPlugin.options.__SAGE_URL__%>"
     }
     // Render splash screen.
-    setSageVersionInfo(SageModelerBuildConfig.appVersion, SageModelerBuildConfig.buildDate)
-    showSplashScreen(4, true);
+    setSageVersionInfo(SageModelerBuildConfig.appVersion, SageModelerBuildConfig.buildDate);
+    if (window.location.hash.length + window.location.search.length === 0) {
+      showSplashScreen(4, true);
+    }
+    else {
+      // wait for onSplashScreenClosed to be defined
+      var waitForOnSplashScreenClosed = function () {
+        if (window.onSplashScreenClosed) {
+          window.onSplashScreenClosed();
+        }
+        else {
+          setTimeout(waitForOnSplashScreenClosed, 10);
+        }
+      };
+      waitForOnSplashScreenClosed();
+    }
   </script>
 
   <!-- Cloud File Manager! -->
