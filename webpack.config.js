@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
     mode: 'development',
     output: {
       path: __dirname + (devMode ? "/dev" : "/dist"),
-      filename: 'js/app.js'
+      filename: 'app/js/app.js'
     },
     performance: { hints: false },
     module: {
@@ -100,11 +100,11 @@ module.exports = (env, argv) => {
     plugins: [
       new ForkTsCheckerWebpackPlugin(),
       new MiniCssExtractPlugin({
-        filename: "css/app.css"
+        filename: "app/css/app.css"
       }),
       new HtmlWebpackPlugin({
         inject: false,
-        filename: 'index.html',
+        filename: 'app/index.html',
         template: 'src/templates/index.html.ejs',
         __BUILD_INFO__: buildInfoString,
         __ENVIRONMENT__: environment,
@@ -117,6 +117,10 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin([{
         from: 'src/assets',
         to: ''
+      }]),
+      new CopyWebpackPlugin([{
+        from: 'src/microsite',
+        to: ''
       }])
     ],
     optimization: {
@@ -126,7 +130,7 @@ module.exports = (env, argv) => {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
-            filename: 'js/globals.js'
+            filename: 'app/js/globals.js'
           }
         }
       }
