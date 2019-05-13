@@ -114,6 +114,10 @@ ul, ol {padding: 0 10px 10px 30px;font-family: museo-sans,sans-serif;line-height
 ul li {background: transparent 0 10px no-repeat;padding: 0 0 0 0;font-family: museo-sans,sans-serif;font-weight: 300;}
 ol li {list-style: decimal;margin: 0 0 0 10px;padding: 0 0 20px 0;}
 nav ul, nav ol, nav li {background: none;margin: 0;padding: 0;font-weight: normal;}
+section.category dl {margin-bottom: 30px;}
+section.category dd {display: none;margin: 0 0 20px 0;}
+section.category dt {color: #ea6d2f;cursor: pointer;font-weight: 700;}
+section.category h3 {font-size: 28px;}
 table {margin: 0 0 1.5em;width: 100%;}
 a, button, .button, .button-reverse, .button-large, .button-small, input[type="submit"] {-webkit-transition: color .2s ease-in-out;-moz-transition: color .2s ease-in-out;-ms-transition: color .2s ease-in-out;-o-transition: color .2s ease-in-out;transition: color .2s ease-in-out;-moz-transition-property: background-color,border-color,color,opacity;-o-transition-property: background-color,border-color,color,opacity;-webkit-transition-property: background-color,border-color,color,opacity;transition-property: background-color,border-color,color,opacity;}
 .lazyload, .lazyloading {opacity: 0;}
@@ -412,6 +416,13 @@ h6 {font-size: 16px;line-height: 28px;margin-bottom: 20px;}
 .comment-navigation .nav-previous, .posts-navigation .nav-previous, .post-navigation .nav-previous {float: left;width: 50%;}
 .comment-navigation .nav-next, .posts-navigation .nav-next, .post-navigation .nav-next {float: right;text-align: right;width: 50%;}
 .page-nav-dropdown__title {display: none;}
+.tabbed-content .tabs {margin-bottom: 0;}
+.tabbed-content .tabs ul {border-bottom: solid 1px #999;list-style: none;margin: 0;padding: 0 0 0 20px;}
+.tabbed-content .tabs ul li {background: #ccc;border: solid 1px #999;border-top-left-radius: 5px;border-top-right-radius: 5px;cursor: pointer;display: inline-block;margin: 0 5px -1px 0;padding: 5px 20px 0;}
+.tabbed-content .tabs ul li.active {background: #fff;border-bottom: solid 1px #fff;}
+.tabbed-content .tab-content {display: none;border: solid 1px #999;border-top: none;padding: 20px;}
+.tabbed-content .tab-content.active {display: block;}
+.tabbed-content .tab-content h2 {margin-top: 10px;}
 .screen-reader-text {clip: rect(1px,1px,1px,1px);position: absolute !important;height: 1px;width: 1px;overflow: hidden;}
 .screen-reader-text:focus {background-color: #fff;border-radius: 3px;box-shadow: 0 0 2px 2px rgba(0,0,0,.6);clip: auto !important;color: #080d09;display: block;font-size: 14px;font-size: .875rem;font-weight: bold;height: auto;left: 5px;line-height: normal;padding: 15px 23px 14px;text-decoration: none;top: 5px;width: auto;z-index: 100000;}
 #content[tabindex="-1"]:focus {outline: 0;}
