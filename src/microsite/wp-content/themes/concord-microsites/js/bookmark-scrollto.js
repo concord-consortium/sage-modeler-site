@@ -14,5 +14,12 @@
       e.preventDefault();
       $('html, body').animate({scrollTop: $('#page').offset().top}, 500);
     });
+
+    $(document).ready(function() {
+      $('section.category dt').click(function(e){
+        e.preventDefault();
+        $(this).next('dd').toggle();
+      });
+    });
   });
 })(jQuery);
