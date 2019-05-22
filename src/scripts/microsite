@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+set -e
+
+current_branch () {
+  local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  echo "$branch"
+}
+
+not_in_microsite_branch () {
+  echo -e "Oops! You must be in a microsite branch to run this command.\n"
+  echo "Type 'microsite create-branch' if you don't already have a branch created."
+  exit 1
+}
+
+process_zip () {
+  local zippath=$1
+  if [[ "$zippath" = *.zip ]]; then
+    if [[ -f "$zippath" ]]; then
+      echo "Clearing current microsite"
+
+      # clear all content from src/microsite except autoredirect script
+      rm -rf src/microsite/*
+      cp src/scripts/detect-autoredirect-to-app.template.js src/microsite/detect-autoredirect-to-app.js
+      cd src/microsite
+
+      echo "Processing $zippath..."
+
+      # unzip file into src/microsite
+      unzip $zippath
+
+      # search and replace all uses of "../" with "" to get relative links to work
+      find . -type f \( -name "*.html" -o -name "*.css" \) -print0 | xargs -0 sed -i 's/"\.\.\//"/g'
+
+      # replace concord-microsites/fonts with "fonts" to get fonts to work
+      find . -type f -name "*.css" -print0 | xargs -0 sed -i 's/concord-microsites\/fonts/fonts/g'
+
+      # remove trailing whitespace
+      find . -type f \( -name "*.html" -o -name "*.css" \) -print0 | xargs -0 sed -i 's/[[:space:]]*$//'
+
+      # add <script src="detect-autoredirect-to-app.js"></script> to index.html head
+      sed -i 's/<meta charset="UTF-8">/<meta charset="UTF-8"><script src="detect-autoredirect-to-app.js"><\/script>/g' index.html
+
+    else
+      echo "Oops! $zippath doesn't exist!"
+    fi
+  else
+    echo "Oops! $zippath needs to end with .zip"
+  fi
+}
+
+# make sure we are running in the root of a sage-modeler-site repo
+if [ ! -d src/microsite ]; then
+  echo "Oops!  You have to run this from the root of a sage-modeler-site repo!"
+  exit 1
+fi
+
+# process command line args
+case "$1" in
+  create-branch)
+    if [ "$(current_branch)" = "master" ]; then
+      if [[ `git status --porcelain` ]]; then
+        echo -e "Oops!  Your master branch can't have any changes.\n"
+        echo "Take care of your local changes first and then rerun this command."
+        exit 1
+      else
+        new_branch="microsite-update-$(date +%Y-%m-%d)"
+        echo "Creating ${new_branch} branch..."
+        git checkout -b $new_branch
+      fi
+    else
+      echo -e "Oops!  You must be on the master branch.\n"
+      echo "Type: 'git checkout master' to fix this (after taking care of any local changes)."
+      exit 1
+    fi
+    ;;
+
+  process-zip)
+    if [[ "$(current_branch)" =~ "microsite-update-" ]]; then
+      if [[ $# -eq 2 ]]; then
+        process_zip "$2"
+      else
+        echo -e "Oops!  You are missing the path to the zip file.\n"
+        echo "Type 'microsite process-zip <path-to-zip>'."
+      fi
+    else
+      not_in_microsite_branch
+    fi
+    ;;
+
+  view)
+    echo "Starting live-server..."
+    npm run microsite:view
+    ;;
+
+  push-branch)
+    if [[ "$(current_branch)" =~ "microsite-update-" ]]; then
+      if [[ `git status --porcelain` ]]; then
+        echo "Commiting all changes..."
+        git add --all && git commit -m "Updated microsite content"
+      fi
+      echo "Pushing branch..."
+      git push origin HEAD
+    else
+      not_in_microsite_branch
+    fi
+    ;;
+
+  release)
+    if [[ "$(current_branch)" =~ "microsite-update-" ]]; then
+      if [[ `git status --porcelain` ]]; then
+        echo -e "Oops! You have local changes!"
+        echo "Type 'microsite push-branch' to push the changes.'"
+      else
+        echo "TODO: Merging branch to master..."
+
+        echo "TODO: Merging branch to production..."
+      fi
+    else
+      not_in_microsite_branch
+    fi
+    ;;
+
+  *)
+    echo -e "Usage:\n"
+    echo "microsite create-branch - creates new branch"
+    echo "microsite process-zip [path-to-zip] - processes exported zip file from WordPress"
+    echo "microsite view - uses live-server to view microsite folder"
+    echo "microsite push-branch - commits all changes and pushes branch to GitHub"
+    echo "microsite release - merges branch to master and production and pushes to GitHub"
+    echo -e "\nNote: you will follow these steps in order to publish a new version"
+esac
+
+
