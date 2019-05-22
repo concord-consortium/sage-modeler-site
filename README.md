@@ -99,6 +99,22 @@ The parameters are:
 - ?cfmBaseUrl=<`URL`|`branch`> where `URL` is the url to the /js folder for CFM or `branch` is the deployed CFM branch (example: `fix-example-loads-in-codap`)
 - ?di=<`URL`|`branch`> where `URL` is the url to Sage (di is passed to CODAP, it stands for "data interactive") or `branch` is the deployed Sage branch (example: `164295027-default-to-zero`)
 
+### Microsite Updates
+
+The files in `src/microsite` are generated from the SageModeler WordPress site.  This process is automated by using the `src/scripts/microsite` script using the following steps.
+
+1. Start a static site export at the SageModeler WordPress site in the WP2Static plugin.
+2. Download the .zip file when the export is complete.  For this example we'll assume its downloaded to `~/Downloads/wp-static-html-output-1557755665.zip`
+3. In a terminal change to this repos root folder (you will see an error message in the next step if you don't).
+4. Checkout master and clean all local changes (you will see an error message in the next step if you don't).
+5. Run `src/scripts/microsite create-branch` to create a branch for the update.
+6. Run `src/scripts/microsite process-zip ~/Downloads/wp-static-html-output-1557755665.zip` to process the zip file.
+7. Run `src/scripts/microsite view` to view the locally updated microsite folder a browser.
+8. Look around the microsite to ensure that it includes your changes from Wordpress and the links work.
+9. Run `src/scripts/microsite push-branch` to commit the changes and push the branch to GitHub.
+10. Load [https://github.com/concord-consortium/sage-modeler-site/](https://github.com/concord-consortium/sage-modeler-site/) and create a PR for the newly pushed branch (you should see a notice at the top of the page about the new branch with a button to create a PR).
+11. Assign the PR to Doug to review and merge to master and production.  This may be automated in the future.
+
 ### Testing
 
 TDB.

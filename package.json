@@ -11,7 +11,8 @@
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "dev:proxy": "ts-node src/devproxy/index.ts",
     "dev:server": "webpack-dev-server --https --inline --hot --port=10001 --content-base dist/",
-    "dev:browse": "opener https://localhost:10000/"
+    "dev:browse": "opener https://localhost:10000/",
+    "microsite:view": "live-server src/microsite"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "fork-ts-checker-webpack-plugin": "^0.4.9",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy": "^1.17.0",
+    "live-server": "^1.2.1",
     "mime2": "0.0.5",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.4",
