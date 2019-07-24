@@ -35,7 +35,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   }
 
   const codapParams = {
-    standalone: "true",
+    standalone: "true",  // NOTE: should be "sage", but reverting to enable production release
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
