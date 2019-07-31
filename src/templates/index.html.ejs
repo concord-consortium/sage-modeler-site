@@ -72,14 +72,14 @@
       }
     }
 
-    function loadLinkTag(href) {
+    function loadDynamicLink(href) {
       var link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = href;
       document.getElementsByTagName('head')[0].appendChild(link);
     }
 
-    function loadScriptTag(src) {
+    function loadDynamicScript(src) {
       var script = document.createElement("script");
       script.type = "text/javascript";
       script.src = src;
@@ -97,9 +97,9 @@
         cfmUrl = cfmBaseUrl;
       }
     }
-    loadLinkTag(cfmUrl + "/css/app.css");
-    loadScriptTag(cfmUrl + "/js/globals.js");
-    loadScriptTag(cfmUrl + "/js/app.js");
+    loadDynamicLink(cfmUrl + "/css/app.css");
+    loadDynamicScript(cfmUrl + "/js/globals.js");
+    loadDynamicScript(cfmUrl + "/js/app.js");
 
     // Expose webpack htmlWebpackPlugin template variables.
     window.SageModelerBuildConfig = {
@@ -130,7 +130,7 @@
 
     // dynamically load the remaining javascript
     <% for (key in htmlWebpackPlugin.files.chunks) { %>
-    loadScriptTag("<%= htmlWebpackPlugin.files.chunks[key].entry %>");
+    loadDynamicScript("<%= htmlWebpackPlugin.files.chunks[key].entry %>");
     <% } %>
   </script>
 </body>
