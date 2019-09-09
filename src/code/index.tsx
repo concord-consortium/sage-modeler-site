@@ -108,7 +108,8 @@ const options = {
     shareDialog: {
       serverUrl: selfUrl,
       serverUrlLabel: tr("~SAGEMODELER.SHARE_DIALOG.SERVER_URL")
-    }
+    },
+    confirmCloseIfDirty: true
   },
 };
 
