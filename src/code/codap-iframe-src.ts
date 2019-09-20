@@ -35,7 +35,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   }
 
   const codapParams = {
-    standalone: "true",  // NOTE: should be "sage", but reverting to enable production release
+    standalone: "sagemodeler",
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
@@ -55,7 +55,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   });
 
   const diParams = encodeURIComponent(`?${stringify(sageParams)}`);
-  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}&di-override=sage`;
+  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}`;
 };
 
 export const codapIframeSrc = iframeSrc({
