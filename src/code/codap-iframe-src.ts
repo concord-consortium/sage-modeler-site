@@ -28,14 +28,14 @@ const iframeSrc = (options: CodapParamsOptions) => {
     codap = `/releases/${codap}/static/dg/en/cert/index.html`;
   }
   if (di.indexOf("/") === -1) {
-    di = `/sage/branch/${di}/sage.html`;
+    di = `/sage/branch/${di}/sagemodeler.html`;
   }
   if (cfmBaseUrl.indexOf("/") === -1) {
     cfmBaseUrl = `/cfm/branch/${cfmBaseUrl}/js`;
   }
 
   const codapParams = {
-    standalone: "true",  // NOTE: should be "sage", but reverting to enable production release
+    standalone: "sagemodeler",
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
@@ -55,7 +55,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   });
 
   const diParams = encodeURIComponent(`?${stringify(sageParams)}`);
-  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}&di-override=sage`;
+  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}`;
 };
 
 export const codapIframeSrc = iframeSrc({

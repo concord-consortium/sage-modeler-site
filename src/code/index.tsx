@@ -15,9 +15,9 @@ try {
   inIframe = false;
 }
 
-// the two ways we detect if we are launched from lara is if we are in an iframe
-// or there is a documentServer parameter that is part of the LARA embed parameters
-const launchedFromLara = inIframe || !!parsedParams.documentServer;
+// the three ways we detect if we are launched from lara is if we are in an iframe
+// or there is either a documentServer or launchFromLara parameter that is part of the LARA embed parameters
+const launchedFromLara = inIframe || !!parsedParams.documentServer || !!parsedParams.launchFromLara;
 
 const selfUrl = `${window.location.origin}${window.location.pathname}`;
 
@@ -108,7 +108,8 @@ const options = {
     shareDialog: {
       serverUrl: selfUrl,
       serverUrlLabel: tr("~SAGEMODELER.SHARE_DIALOG.SERVER_URL")
-    }
+    },
+    confirmCloseIfDirty: true
   },
 };
 
