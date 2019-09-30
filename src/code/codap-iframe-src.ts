@@ -1,5 +1,5 @@
 import { urlParams, parsedParams } from "./utils/url-params";
-import { stringify } from "query-string";
+import { parse, stringify } from "query-string";
 
 interface CodapParamsOptions {
   codap: string;
@@ -35,7 +35,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   }
 
   const codapParams = {
-    standalone: "sagemodeler",
+    standalone: "SageModeler",
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
@@ -54,8 +54,17 @@ const iframeSrc = (options: CodapParamsOptions) => {
     }
   });
 
-  const diParams = encodeURIComponent(`?${stringify(sageParams)}`);
-  return `${codap}?${stringify(codapParams)}&di=${di}${diParams}`;
+  let url = `${codap}?${stringify(codapParams)}`;
+
+  // if there is a file hash parameter skip specifing a di parameter as the cfm will load the doc
+  const hasFileParam = !!(parse(window.location.hash).file);
+  if (!hasFileParam) {
+    const diParams = encodeURIComponent(`?${stringify(sageParams)}`);
+    url = `${url}&di=${di}${diParams}`;
+  }
+
+  console.log("CODAP URL", url);
+  return url;
 };
 
 export const codapIframeSrc = iframeSrc({
