@@ -35,7 +35,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   }
 
   const codapParams = {
-    standalone: "sagemodeler",
+    standalone: "SageModeler",
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
