@@ -6,7 +6,8 @@ const languageFiles = {
   "zh-TW": require("./lang/zh-TW.json"),
   "es": require("./lang/es.json"),
   "et": require("./lang/et.json"),
-  "el": require("./lang/el.json")
+  "el": require("./lang/el.json"),
+  "nn": require("./lang/nn.json")
 };
 
 const translations =  {};

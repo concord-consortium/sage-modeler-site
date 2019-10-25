@@ -90,8 +90,10 @@ const options = {
           {langCode: "es", label: "Español"},
           {langCode: "el", label: "Ελληνικά"},
           {langCode: "he", label: "עברית"},
+          {langCode: "nb", label: "Bokmål"},
+          {langCode: "nn", label: "Nynorsk"},
           {langCode: "tr", label: "Türkçe"},
-          {langCode: "zh", label: "中文"}
+          {langCode: "zh", label: "中文"},
         ],
         onLangChanged: langCode => {
           const newParams = Object.assign({}, urlParams);
