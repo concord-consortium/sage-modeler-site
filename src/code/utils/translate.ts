@@ -7,6 +7,7 @@ const languageFiles = {
   "es": require("./lang/es.json"),
   "et": require("./lang/et.json"),
   "el": require("./lang/el.json"),
+  "nb": require("./lang/nb.json"),
   "nn": require("./lang/nn.json")
 };
 
