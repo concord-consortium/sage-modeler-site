@@ -98,11 +98,7 @@ const options = {
         ],
         onLangChanged: langCode => {
           const newParams = Object.assign({}, urlParams);
-          if (langCode === "en-US") {
-            delete newParams.lang;
-          } else {
-            newParams.lang = langCode;
-          }
+          newParams.lang = langCode;
           window.location.search = queryString.stringify(newParams);
         }
       }
