@@ -1,7 +1,7 @@
 import { showOpenOrCreateDialog } from "./components/open-or-create";
 import { codapIframeSrc } from "./codap-iframe-src";
 import { urlParams, parsedParams } from "./utils/url-params";
-import { tr } from "./utils/translate";
+import { tr, currentLang } from "./utils/translate";
 import * as queryString from "query-string";
 // CFM is added using script tag.
 const CloudFileManager = (window as any).CloudFileManager;
@@ -84,7 +84,7 @@ const options = {
     menuBar: {
       info: (window as any).SageModelerBuildConfig.appVersion,
       languageMenu: {
-        currentLang: urlParams.lang || "en-US",
+        currentLang,
         options: [
           {langCode: "en-US", label: "English"},
           {langCode: "es", label: "Español"},

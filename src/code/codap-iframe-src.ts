@@ -1,5 +1,6 @@
 import { urlParams, parsedParams } from "./utils/url-params";
 import { stringify } from "query-string";
+import { currentLang } from "./utils/translate";
 
 interface CodapParamsOptions {
   codap: string;
@@ -16,11 +17,9 @@ const iframeSrc = (options: CodapParamsOptions) => {
   di = urlParams.di || di;
 
   // Apply language setting to CODAP iframe. It will propagate down and update Sage modeler language too.
-  if (urlParams.lang) {
-    const lang = urlParams.lang.split("-")[0];
-    if (lang !== "en") {
-      codap = codap.replace("/en/", `/${lang}/`);
-    }
+  const lang = currentLang.split("-")[0];
+  if (lang !== "en") {
+    codap = codap.replace("/en/", `/${lang}/`);
   }
 
   // assume release/branch names for params without slashes

@@ -44,11 +44,11 @@ Object.keys(languageFiles).forEach(langKey => {
 
 const lang = urlParams.lang || getFirstBrowserLanguage();
 const baseLang = getBaseLanguage(lang || "");
-const defaultLang = lang && translations[lang] ? lang : (baseLang && translations[baseLang] ? baseLang : "en");
+export const currentLang = lang && translations[lang] ? lang : (baseLang && translations[baseLang] ? baseLang : "en");
 
 const varRegExp = /%\{\s*([^}\s]*)\s*\}/g;
 
-export const translate = (key, vars = {}, lang = defaultLang) => {
+export const translate = (key, vars = {}, lang = currentLang) => {
   let translation = translations[lang] != null ? translations[lang][key] : null;
   if (translation == null) {
     translation = key;
