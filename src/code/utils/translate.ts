@@ -1,27 +1,25 @@
 import { urlParams } from "./url-params";
+
 const languageFiles = {
-  "en-US": require("./lang/en-US.json"),
-  "he": require("./lang/he.json"),
-  "tr": require("./lang/tr.json"),
-  "zh-TW": require("./lang/zh-TW.json"),
-  "es": require("./lang/es.json"),
-  "et": require("./lang/et.json"),
-  "el": require("./lang/el.json"),
-  "nb": require("./lang/nb.json"),
-  "nn": require("./lang/nn.json"),
-  "de": require("./lang/de.json")
+  "de":    require("./lang/de.json"),    // German
+  "el":    require("./lang/el.json"),    // Greek
+  "en-US": require("./lang/en-US.json"), // US English
+  "es":    require("./lang/es.json"),    // Spanish
+  "et":    require("./lang/et.json"),    // Estonian
+  "he":    require("./lang/he.json"),    // Hebrew
+  "nb":    require("./lang/nb.json"),    // Norwegian Bokmål
+  "nn":    require("./lang/nn.json"),    // Norwegian Nynorsk
+  "pl":    require("./lang/pl.json"),    // Polish
+  "tr":    require("./lang/tr.json"),    // Turkish
+  "zh-TW": require("./lang/zh-TW.json"), // Chinese (Taiwan)
 };
 
-const translations =  {};
-Object.keys(languageFiles).forEach(langKey => {
-  let dashLoc;
-  translations[langKey] = languageFiles[langKey];
-  // accept full key with region code or just the language code
-  if ((dashLoc = langKey.indexOf("-")) > 0) {
-    const lang = langKey.substring(0, dashLoc);
-    translations[lang] = languageFiles[langKey];
+const getBaseLanguage = (langKey: string) => {
+  const dashLoc = langKey.indexOf("-");
+  if (dashLoc !== -1) {
+    return langKey.substring(0, dashLoc);
   }
-});
+};
 
 const getFirstBrowserLanguage = () => {
   const nav = window.navigator as any;
@@ -34,8 +32,19 @@ const getFirstBrowserLanguage = () => {
   }
 };
 
+const translations =  {};
+Object.keys(languageFiles).forEach(langKey => {
+  translations[langKey] = languageFiles[langKey];
+  // accept full key with region code or just the language code
+  const baseLang = getBaseLanguage(langKey);
+  if (baseLang) {
+    translations[baseLang] = languageFiles[langKey];
+  }
+});
+
 const lang = urlParams.lang || getFirstBrowserLanguage();
-const defaultLang = lang && translations[lang] ? lang : "en";
+const baseLang = getBaseLanguage(lang || "");
+const defaultLang = lang && translations[lang] ? lang : (baseLang && translations[baseLang] ? baseLang : "en");
 
 const varRegExp = /%\{\s*([^}\s]*)\s*\}/g;
 
