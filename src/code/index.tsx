@@ -19,6 +19,9 @@ try {
 // or there is either a documentServer or launchFromLara parameter that is part of the LARA embed parameters
 const launchedFromLara = inIframe || !!parsedParams.documentServer || !!parsedParams.launchFromLara;
 
+// check for a temp file before creating the CFM frame (where is will be auto loaded and then removed from localstorage)
+const haveTempFile = CloudFileManager.client.haveTempFile && CloudFileManager.client.haveTempFile();
+
 const selfUrl = `${window.location.origin}${window.location.pathname}`;
 
 const options = {
@@ -156,7 +159,7 @@ CloudFileManager.createFrame(options, "app", event => {
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
       // and we are not in an iframe (for LARA) or were launched from LARA
-      if ((window.location.hash.length < 2) && !isNewedFile && !launchedFromLara && !isCopiedFile) {
+      if ((window.location.hash.length < 2) && !isNewedFile && !launchedFromLara && !isCopiedFile && !haveTempFile) {
         showOpenOrCreateDialog(client);
       }
     };
