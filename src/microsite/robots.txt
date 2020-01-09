@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: /sagemodeler/wp-admin/
-Allow: /sagemodeler/wp-admin/admin-ajax.php
