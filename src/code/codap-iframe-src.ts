@@ -39,6 +39,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
     hideUndoRedoInComponent: "yes",
+    inbounds: "true",
     cfmBaseUrl
   };
   const sageParams = {
