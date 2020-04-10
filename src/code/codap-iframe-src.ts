@@ -23,23 +23,17 @@ const iframeSrc = (options: CodapParamsOptions) => {
   }
 
   // assume release/branch names for params without slashes
-  if (codap.indexOf("/") === -1) {
-    codap = `/releases/${codap}/static/dg/en/cert/index.html`;
-  }
-  if (di.indexOf("/") === -1) {
-    di = `/sage/branch/${di}/sagemodeler.html`;
-  }
-  if (cfmBaseUrl.indexOf("/") === -1) {
-    cfmBaseUrl = `/cfm/branch/${cfmBaseUrl}/js`;
-  }
+  const expandBranchUrl = (url: string, branchUrl: string) => url.indexOf("/") === -1 ? branchUrl : url;
+  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/en/cert/index.html`);
+  di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
+  cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
 
   const codapParams = {
     standalone: "SageModeler",
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
-    hideUndoRedoInComponent: "yes",
-    cfmBaseUrl
+    hideUndoRedoInComponent: "yes"
   };
   const sageParams = {
     standalone: "true"
@@ -48,8 +42,13 @@ const iframeSrc = (options: CodapParamsOptions) => {
   Object.keys(parsedParams).forEach((key) => {
     const match = key.match(/^(codap|sage):(.+)$/i);
     if (match) {
+      let value = parsedParams[key] as string;
+      const param = match[2];
+      if (param === "cfmBaseUrl") {
+        value = expandBranchUrl(value, `/cfm/branch/${value}/js`);
+      }
       const params = match[1] === "codap" ? codapParams : sageParams;
-      params[match[2]] = parsedParams[key];
+      params[param] = value;
     }
   });
 
