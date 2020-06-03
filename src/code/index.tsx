@@ -97,7 +97,8 @@ const options = {
           {langCode: "nb", label: "Bokmål"},
           {langCode: "nn", label: "Nynorsk"},
           {langCode: "tr", label: "Türkçe"},
-          {langCode: "zh", label: "中文"},
+          {langCode: "zh", label: "简体中文"},
+          {langCode: "zh-TW", label: "繁体中文"}
         ],
         onLangChanged: langCode => {
           const newParams = Object.assign({}, urlParams);
