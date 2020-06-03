@@ -45,7 +45,7 @@ const lang = urlParams.lang || getFirstBrowserLanguage();
 const baseLang = getBaseLanguage(lang || "");
 export const currentLang = lang && translations[lang] ? lang : (baseLang && translations[baseLang] ? baseLang : "en");
 
-console.log(`sage-modeler-site: using ${currentLang} for translation (lang is ${lang})`);
+console.log(`sage-modeler-site: using ${currentLang} for translation (lang is "${urlParams.lang}" || "${getFirstBrowserLanguage()}")`);
 
 const varRegExp = /%\{\s*([^}\s]*)\s*\}/g;
 
