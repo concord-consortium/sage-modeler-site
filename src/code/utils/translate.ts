@@ -13,7 +13,12 @@ const languageFiles = {
   "zh-TW":   require("./lang/zh-TW.json"),   // Chinese (Traditional)
 };
 
-const getBaseLanguage = (langKey: string) => {
+export const useFullLanguage = (lang: string) => {
+  const fullLangWhitelist = ["zh-TW"];
+  return fullLangWhitelist.indexOf(lang) !== -1;
+};
+
+export const getBaseLanguage = (langKey: string) => {
   const dashLoc = langKey.indexOf("-");
   if (dashLoc !== -1) {
     return langKey.substring(0, dashLoc);

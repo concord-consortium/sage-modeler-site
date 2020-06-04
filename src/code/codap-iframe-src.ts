@@ -1,6 +1,6 @@
 import { urlParams, parsedParams } from "./utils/url-params";
 import { stringify } from "query-string";
-import { currentLang } from "./utils/translate";
+import { currentLang, useFullLanguage, getBaseLanguage } from "./utils/translate";
 
 interface CodapParamsOptions {
   codap: string;
@@ -18,7 +18,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
 
   // Apply language setting to CODAP iframe. It will propagate down and update Sage modeler language too.
   const fullLangWhitelist = ["zh-TW"];
-  const lang = fullLangWhitelist.indexOf(currentLang) === -1 ? currentLang.split("-")[0] : currentLang;
+  const lang = useFullLanguage(currentLang) ? currentLang : getBaseLanguage(currentLang);
   if (lang !== "en") {
     codap = codap.replace("/en/", `/${lang}/`);
   }
