@@ -35,7 +35,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
     hideUndoRedoInComponent: "yes",
-    langOverride: lang
+    "lang-override": lang
   };
   const sageParams = {
     standalone: "true"
