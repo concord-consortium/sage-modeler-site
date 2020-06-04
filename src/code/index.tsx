@@ -121,7 +121,7 @@ if (!urlParams.lang) {
   const baseLang = getBaseLanguage(currentLang);
   const lang = useFullLanguage(currentLang) ? currentLang : baseLang;
   const langOption = options.ui.menuBar.languageMenu.options.find((option) => {
-    return (option.langCode === lang) || (option.langCode === lang);
+    return (option.langCode === lang);
   });
   if (!!langOption && (baseLang !== "en")) {
     const hash = window.location.hash.length > 1 ? window.location.hash : "";
