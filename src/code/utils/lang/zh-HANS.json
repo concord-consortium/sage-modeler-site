@@ -184,7 +184,7 @@
     "~DROP.ONLY_ALLOWED_IF_IFRAMED": "抱歉，只有在iframed的情况下才允许放弃这种类型的题目",
     "~SAGEMODELER.MENU.CLOSE": "关闭",
     "~SAGEMODELER.MENU.IMPORT": "导入",
-    "~SAGEMODELER.OPEN_OR_CREATE.TITLE": "你要做什么？ (zh-Hans)",
+    "~SAGEMODELER.OPEN_OR_CREATE.TITLE": "你要做什么？",
     "~SAGEMODELER.OPEN_OR_CREATE.OPEN_DOC": "打开文件或浏览示例",
     "~SAGEMODELER.OPEN_OR_CREATE.NEW_DOC": "创建新文件",
     "~DOCUMENT.CODAP_ACTIONS.TABLES": "表格",
