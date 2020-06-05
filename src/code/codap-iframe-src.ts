@@ -25,7 +25,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
 
   // assume release/branch names for params without slashes
   const expandBranchUrl = (url: string, branchUrl: string) => url.indexOf("/") === -1 ? branchUrl : url;
-  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/en/cert/index.html`);
+  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/en/cert/`);
   di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
   cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
 
@@ -38,8 +38,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
     "lang-override": lang
   };
   const sageParams = {
-    standalone: "true",
-    lang
+    standalone: "true"
   };
 
   Object.keys(parsedParams).forEach((key) => {
