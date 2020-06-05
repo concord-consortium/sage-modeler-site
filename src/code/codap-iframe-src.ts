@@ -1,6 +1,6 @@
 import { urlParams, parsedParams } from "./utils/url-params";
 import { stringify } from "query-string";
-import { currentLang } from "./utils/translate";
+import { currentLang, useFullLanguage, getBaseLanguage } from "./utils/translate";
 
 interface CodapParamsOptions {
   codap: string;
@@ -17,14 +17,15 @@ const iframeSrc = (options: CodapParamsOptions) => {
   di = urlParams.di || di;
 
   // Apply language setting to CODAP iframe. It will propagate down and update Sage modeler language too.
-  const lang = currentLang.split("-")[0];
+  const fullLangWhitelist = ["zh-TW"];
+  const lang = useFullLanguage(currentLang) ? currentLang : getBaseLanguage(currentLang);
   if (lang !== "en") {
     codap = codap.replace("/en/", `/${lang}/`);
   }
 
   // assume release/branch names for params without slashes
   const expandBranchUrl = (url: string, branchUrl: string) => url.indexOf("/") === -1 ? branchUrl : url;
-  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/en/cert/index.html`);
+  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/en/cert/`);
   di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
   cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
 
@@ -33,7 +34,8 @@ const iframeSrc = (options: CodapParamsOptions) => {
     embeddedMode: "yes",
     hideSplashScreen: "yes",
     hideWebViewLoading: "yes",
-    hideUndoRedoInComponent: "yes"
+    hideUndoRedoInComponent: "yes",
+    "lang-override": lang
   };
   const sageParams = {
     standalone: "true"
