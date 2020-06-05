@@ -38,7 +38,8 @@ const iframeSrc = (options: CodapParamsOptions) => {
     "lang-override": lang
   };
   const sageParams = {
-    standalone: "true"
+    standalone: "true",
+    lang
   };
 
   Object.keys(parsedParams).forEach((key) => {
