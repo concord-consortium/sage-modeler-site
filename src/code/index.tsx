@@ -56,16 +56,16 @@ const options = {
         return obj.guid || JSON.stringify(obj);
       }
     },
-    {
-      "name": "googleDrive",
-      "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com",
-      "scopes": [
-        "https://www.googleapis.com/auth/drive.file",
-        "https://www.googleapis.com/auth/drive.install",
-        "https://www.googleapis.com/auth/drive.metadata.readonly",
-        "https://www.googleapis.com/auth/userinfo.profile"
-      ]
-    },
+    // {
+    //   "name": "googleDrive",
+    //   "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com",
+    //   "scopes": [
+    //     "https://www.googleapis.com/auth/drive.file",
+    //     "https://www.googleapis.com/auth/drive.install",
+    //     "https://www.googleapis.com/auth/drive.metadata.readonly",
+    //     "https://www.googleapis.com/auth/userinfo.profile"
+    //   ]
+    // },
     {
       "name": "documentStore",
       "displayName": "Concord Cloud",
