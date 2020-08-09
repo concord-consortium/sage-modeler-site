@@ -20,7 +20,7 @@ module.exports = (env, argv) => {
         },
         buildInfoString = `${buildInfo.date} ${buildInfo.tag}`,
         cfmUrl = devMode ? "/cfm" : "/cfm",
-        codapUrl = devMode ? "/codap/static/dg/en/cert/index.html" : "/releases/build_0548/static/dg/en/cert/index.html",
+        codapUrl = devMode ? "/codap/static/dg/en/cert/index.html" : "/releases/stable/static/dg/en/cert/index.html",
         sageUrl = devMode ? "/sage" : "/sage";
 
   return {
