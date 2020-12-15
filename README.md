@@ -69,14 +69,12 @@ Note that you should push the same changes to both repositories, so they stay in
 
 ## Deployment
 
-Production releases to S3 are based on the contents of the /dist folder and are built automatically by Travis
+Production releases to S3 are based on the contents of the /dist folder and are built automatically by GitHub Actions
 for each branch pushed to GitHub and each merge into production.
 
 Merges into production are deployed to http://sagemodeler.concord.org.
 
 Other branches are deployed to http://sagemodeler.concord.org/branch/<name>.
-
-You can view the status of all the branch deploys [here](https://travis-ci.org/concord-consortium/sagemodeler/branches).
 
 To deploy a production release:
 
