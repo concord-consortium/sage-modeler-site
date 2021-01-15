@@ -25,7 +25,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
 
   // assume release/branch names for params without slashes
   const expandBranchUrl = (url: string, branchUrl: string) => url.indexOf("/") === -1 ? branchUrl : url;
-  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/en/cert/`);
+  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/${lang}/cert/`);
   di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
   cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
 
