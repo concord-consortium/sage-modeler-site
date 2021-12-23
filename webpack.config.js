@@ -148,7 +148,7 @@ module.exports = (env, argv) => {
     {
       context: __dirname, // to automatically find tsconfig.json
       devtool: 'source-map',
-      entry: './src/code/report-item.tsx',
+      entry: './src/code/report-item/index.tsx',
       mode: 'development',
       output: {
         path: __dirname + (devMode ? "/dev" : "/dist"),
