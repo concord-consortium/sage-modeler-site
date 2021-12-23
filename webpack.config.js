@@ -23,122 +23,188 @@ module.exports = (env, argv) => {
         codapUrl = devMode ? "/codap/static/dg/en/cert/index.html" : "/releases/stable/static/dg/en/cert/index.html",
         sageUrl = devMode ? "/sage" : "/sage";
 
-  return {
-    context: __dirname, // to automatically find tsconfig.json
-    devtool: 'source-map',
-    entry: './src/code/index.tsx',
-    mode: 'development',
-    output: {
-      path: __dirname + (devMode ? "/dev" : "/dist"),
-      filename: 'app/js/app.js'
-    },
-    performance: { hints: false },
-    module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          enforce: 'pre',
-          use: [
-            {
-              loader: 'tslint-loader',
-              options: {
-                configFile: 'tslint.json',
-                failOnHint: true
+  return [
+    // main application
+    {
+      context: __dirname, // to automatically find tsconfig.json
+      devtool: 'source-map',
+      entry: './src/code/index.tsx',
+      mode: 'development',
+      output: {
+        path: __dirname + (devMode ? "/dev" : "/dist"),
+        filename: 'app/js/app.js'
+      },
+      performance: { hints: false },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            enforce: 'pre',
+            use: [
+              {
+                loader: 'tslint-loader',
+                options: {
+                  configFile: 'tslint.json',
+                  failOnHint: true
+                }
+              }
+            ]
+          },
+          {
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true // IMPORTANT! use transpileOnly mode to speed-up compilation
+            }
+          },
+          {
+            test: /\.(sa|sc|c)ss$/i,
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'postcss-loader',
+              'sass-loader'
+            ]
+          },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'fonts/[name].[ext]',
+              publicPath: function(url) {
+                // cf. https://github.com/webpack-contrib/file-loader/issues/160#issuecomment-349771544
+                return url.replace(/fonts/, '../fonts');
               }
             }
-          ]
-        },
-        {
-          test: /\.tsx?$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true // IMPORTANT! use transpileOnly mode to speed-up compilation
-          }
-        },
-        {
-          test: /\.(sa|sc|c)ss$/i,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
-          ]
-        },
-        {
-          test: /\.(woff|woff2|eot|ttf|otf)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            name: 'fonts/[name].[ext]',
-            publicPath: function(url) {
-              // cf. https://github.com/webpack-contrib/file-loader/issues/160#issuecomment-349771544
-              return url.replace(/fonts/, '../fonts');
+          },
+          {
+            test: /\.(png|cur|svg)$/,
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'img/[name].[ext]',
+              publicPath: function(url) {
+                // cf. https://github.com/webpack-contrib/file-loader/issues/160#issuecomment-349771544
+                return url.replace(/img/, '../img');
+              }
             }
-          }
-        },
-        {
-          test: /\.(png|cur|svg)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            name: 'img/[name].[ext]',
-            publicPath: function(url) {
-              // cf. https://github.com/webpack-contrib/file-loader/issues/160#issuecomment-349771544
-              return url.replace(/img/, '../img');
+          },
+        ]
+      },
+      resolve: {
+        extensions: [ '.ts', '.tsx', '.js' ]
+      },
+      stats: {
+        // suppress "export not found" warnings about re-exported types
+        warningsFilter: /export .* was not found in/
+      },
+      plugins: [
+        new ForkTsCheckerWebpackPlugin(),
+        new MiniCssExtractPlugin({
+          filename: "app/css/app.css"
+        }),
+        new HtmlWebpackPlugin({
+          inject: false,
+          filename: 'app/index.html',
+          template: 'src/templates/index.html.ejs',
+          __BUILD_INFO__: buildInfoString,
+          __ENVIRONMENT__: environment,
+          __VERSION__: buildInfo.tag,
+          __BUILD_DATE__: buildInfo.date,
+          __CFM_URL__: cfmUrl,
+          __CODAP_URL__: codapUrl,
+          __SAGE_URL__: sageUrl
+        }),
+        new CopyWebpackPlugin([{
+          from: 'src/assets',
+          to: ''
+        }]),
+        // splashscreen.js in building-models uses app relative `img/logo.png` url
+        new CopyWebpackPlugin([{
+          from: 'src/assets/img',
+          to: 'app/img'
+        }]),
+        new CopyWebpackPlugin([{
+          from: 'src/microsite',
+          to: ''
+        }])
+      ],
+      optimization: {
+        splitChunks: {
+          cacheGroups: {
+            commons: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+              filename: 'app/js/globals.js'
             }
-          }
-        },
-      ]
-    },
-    resolve: {
-      extensions: [ '.ts', '.tsx', '.js' ]
-    },
-    stats: {
-      // suppress "export not found" warnings about re-exported types
-      warningsFilter: /export .* was not found in/
-    },
-    plugins: [
-      new ForkTsCheckerWebpackPlugin(),
-      new MiniCssExtractPlugin({
-        filename: "app/css/app.css"
-      }),
-      new HtmlWebpackPlugin({
-        inject: false,
-        filename: 'app/index.html',
-        template: 'src/templates/index.html.ejs',
-        __BUILD_INFO__: buildInfoString,
-        __ENVIRONMENT__: environment,
-        __VERSION__: buildInfo.tag,
-        __BUILD_DATE__: buildInfo.date,
-        __CFM_URL__: cfmUrl,
-        __CODAP_URL__: codapUrl,
-        __SAGE_URL__: sageUrl
-      }),
-      new CopyWebpackPlugin([{
-        from: 'src/assets',
-        to: ''
-      }]),
-      // splashscreen.js in building-models uses app relative `img/logo.png` url
-      new CopyWebpackPlugin([{
-        from: 'src/assets/img',
-        to: 'app/img'
-      }]),
-      new CopyWebpackPlugin([{
-        from: 'src/microsite',
-        to: ''
-      }])
-    ],
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            filename: 'app/js/globals.js'
           }
         }
       }
+    },
+
+    // report item interactive
+    {
+      context: __dirname, // to automatically find tsconfig.json
+      devtool: 'source-map',
+      entry: './src/code/report-item.tsx',
+      mode: 'development',
+      output: {
+        path: __dirname + (devMode ? "/dev" : "/dist"),
+        filename: 'report-item/report-item.js'
+      },
+      performance: { hints: false },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            enforce: 'pre',
+            use: [
+              {
+                loader: 'tslint-loader',
+                options: {
+                  configFile: 'tslint.json',
+                  failOnHint: true
+                }
+              }
+            ]
+          },
+          {
+            test: /\.tsx?$/,
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true // IMPORTANT! use transpileOnly mode to speed-up compilation
+            }
+          },
+          {
+            test: /\.(sa|sc|c)ss$/i,
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'postcss-loader',
+              'sass-loader'
+            ]
+          },
+        ]
+      },
+      resolve: {
+        extensions: [ '.ts', '.tsx', '.js']
+      },
+      stats: {
+        // suppress "export not found" warnings about re-exported types
+        warningsFilter: /export .* was not found in/
+      },
+      plugins: [
+        new ForkTsCheckerWebpackPlugin(),
+        new MiniCssExtractPlugin({
+          filename: "report-item/report-item.css"
+        }),
+        new HtmlWebpackPlugin({
+          filename: 'report-item/index.html',
+          template: 'src/templates/report-item.html'
+        }),
+      ],
     }
-  };
+  ]
 };
