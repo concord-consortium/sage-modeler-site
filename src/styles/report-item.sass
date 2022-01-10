@@ -18,16 +18,20 @@
   .metricsLegend
     display: flex
     flex-direction: row
+    flex-wrap: wrap
 
     &>div
       margin: 5px 10px
+      text-align: center
 
     &.singleAnswer
-      flex-direction: column
+      flex-direction: row
 
     span
-      background-color: #f00
       color: #fff
       border-radius: 5px
       padding: 3px 6px
       margin: 2px
+
+      svg
+        width: 24px

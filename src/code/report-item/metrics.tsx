@@ -1,5 +1,6 @@
 import * as React from "react";
 import { getTopology, ISageLink, ISageNode } from "@concord-consortium/topology-tagger";
+import { getIcon, getIconHtml } from "./icons";
 
 interface PartialSavedGameState {
   links: ISageLink[];
@@ -17,16 +18,12 @@ interface PartialInteractiveState {
 export const MetricsLegendComponent = ({view}: {view: "singleAnswer" | "multipleAnswer"}) => {
   return (
     <div className={`metricsLegend ${view}`}>
-      <div><span>A</span> Links</div>
-      <div><span>B</span> Nodes</div>
-      <div><span>C</span> Unconnected Nodes</div>
-      <div><span>D</span> Collector Nodes</div>
-      <div><span>E</span> Multi Link Target Nodes</div>
-      <div><span>F</span> Graphs</div>
-      <div><span>G</span> Linear Graphs</div>
-      <div><span>H</span> Feedback Graphs</div>
-      <div><span>I</span> Branched Graphs</div>
-      <div><span>J</span> Multi Path Graphs</div>
+      <div>{getIcon("nodes")} Nodes</div>
+      <div>{getIcon("collectorNodes")} Collectors</div>
+      <div>{getIcon("linearGraphs")} Linear</div>
+      <div>{getIcon("feedbackGraphs")} Feedback</div>
+      <div>{getIcon("branchedGraphs")} Branched</div>
+      <div>{getIcon("multiPathGraphs")} Multipath</div>
     </div>
   );
 };
@@ -51,34 +48,41 @@ export const metricsReportItemHtml = (interactiveState: PartialInteractiveState)
     const topology = getTopology(savedGameState);
 
     if (topology) {
-      const {links, nodes, unconnectedNodes, collectorNodes, multiLinkTargetNodes, graphs,
-             linearGraphs, feedbackGraphs, branchedGraphs, multiPathGraphs} = topology;
+      const {nodes, collectorNodes, linearGraphs, feedbackGraphs, branchedGraphs, multiPathGraphs} = topology;
       metrics = `
-        <div><span>A</span> ${links}</div>
-        <div><span>B</span> ${nodes}</div>
-        <div><span>C</span> ${unconnectedNodes}</div>
-        <div><span>D</span> ${collectorNodes}</div>
-        <div><span>E</span> ${multiLinkTargetNodes}</div>
-        <div><span>F</span> ${graphs}</div>
-        <div><span>G</span> ${linearGraphs}</div>
-        <div><span>H</span> ${feedbackGraphs}</div>
-        <div><span>I</span> ${branchedGraphs}</div>
-        <div><span>J</span> ${multiPathGraphs}</div>
+        <div>${getIconHtml("nodes")} ${nodes}</div>
+        <div>${getIconHtml("collectorNodes")} ${collectorNodes}</div>
+        <div>${getIconHtml("linearGraphs")} ${presentOrAbsent(linearGraphs)}</div>
+        <div>${getIconHtml("feedbackGraphs")} ${presentOrAbsent(feedbackGraphs)}</div>
+        <div>${getIconHtml("branchedGraphs")} ${presentOrAbsent(branchedGraphs)}</div>
+        <div>${getIconHtml("multiPathGraphs")} ${presentOrAbsent(multiPathGraphs)}</div>
       `;
     }
   }
 
   return `
     <style>
+      .tall > div,
+      .wide > div {
+        text-align: center;
+      }
       .wide > div {
         margin-right: 10px;
       }
-      span {
-        background-color: #f00;
-        color: #fff;
-        border-radius: 5px;
+      svg {
         padding: 3px 6px;
         margin: 2px;
+      }
+      .icon {
+        text-align: center;
+      }
+      .present {
+        color: darkgreen;
+        font-weight: bold;
+      }
+      .absent {
+        color: #f00;
+        font-weight: bold;
       }
     </style>
     <div class="tall">
@@ -87,4 +91,11 @@ export const metricsReportItemHtml = (interactiveState: PartialInteractiveState)
     <div class="wide">
       ${metrics}
     </div>`;
+};
+
+const presentOrAbsent = (count: number) => {
+  if (count > 0) {
+    return `<span class="present">✓</span>`;
+  }
+  return `<span class="absent">✘</span>`;
 };
