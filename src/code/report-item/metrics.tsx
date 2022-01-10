@@ -62,6 +62,9 @@ export const metricsReportItemHtml = (interactiveState: PartialInteractiveState)
 
   return `
     <style>
+      .tall {
+        flex-direction: row;
+      }
       .tall > div,
       .wide > div {
         text-align: center;
