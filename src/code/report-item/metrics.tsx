@@ -1,6 +1,6 @@
 import * as React from "react";
 import { getTopology, ISageLink, ISageNode } from "@concord-consortium/topology-tagger";
-import { getIcon, getIconHtml } from "./icons";
+import { correctIconHTML, getIcon, getIconHtml, incorrectIconHTML } from "./icons";
 
 interface PartialSavedGameState {
   links: ISageLink[];
@@ -79,13 +79,11 @@ export const metricsReportItemHtml = (interactiveState: PartialInteractiveState)
       .icon {
         text-align: center;
       }
-      .present {
-        color: darkgreen;
-        font-weight: bold;
-      }
-      .absent {
-        color: #f00;
-        font-weight: bold;
+      .present svg,
+      .absent svg {
+        width: 16px;
+        padding-top: 0;
+        margin-top: 0;
       }
     </style>
     <div class="tall">
@@ -98,7 +96,7 @@ export const metricsReportItemHtml = (interactiveState: PartialInteractiveState)
 
 const presentOrAbsent = (count: number) => {
   if (count > 0) {
-    return `<span class="present">✓</span>`;
+    return `<span class="present">${correctIconHTML}</span>`;
   }
-  return `<span class="absent">✘</span>`;
+  return `<span class="absent">${incorrectIconHTML}</span>`;
 };

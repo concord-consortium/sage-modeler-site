@@ -27,3 +27,8 @@ export const getIconHtml = (type: IconType) => {
   return ReactDOMServer.renderToStaticMarkup(getIcon(type));
 };
 
+export const incorrectIcon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="none" fillRule="evenodd"><g><g><g><g><g transform="translate(-626 -401) translate(598 60) translate(8 276) translate(0 50) translate(20 15)"><circle cx="10" cy="10" r="10" fill="red"/><path fill="#FFF" fillRule="nonzero" d="M16.414 6.41L13.59 3.586 10 7.175 6.41 3.586 3.586 6.41 7.175 10 3.586 13.59 6.41 16.414 10 12.825 13.59 16.414 16.414 13.59 12.825 10z"/></g></g></g></g></g></g></svg>;
+export const correctIcon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><g fill="none" fillRule="evenodd"><g><g><g><g><g transform="translate(-626 -432) translate(598 60) translate(8 276) translate(0 50) translate(20 46)"><circle cx="10" cy="10" r="10" fill="#19E549"/><path fill="#FFF" fillRule="nonzero" d="M14.533 4.65L7.918 11.265 5.468 8.815 3 11.283 7.918 16.2 17 7.117z"/></g></g></g></g></g></g></svg>;
+
+export const correctIconHTML = ReactDOMServer.renderToStaticMarkup(correctIcon);
+export const incorrectIconHTML = ReactDOMServer.renderToStaticMarkup(incorrectIcon);
