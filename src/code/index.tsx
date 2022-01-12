@@ -97,7 +97,7 @@ const options = {
           {langCode: "he",    label: "עברית"},
           {langCode: "nb",    label: "Bokmål"},
           {langCode: "nn",    label: "Nynorsk"},
-          {langCode: "pt-BR", label: "Português"},
+          {langCode: "pt-BR", label: "Português do Brasil"},
           {langCode: "th",    label: "ไทย"},
           {langCode: "tr",    label: "Türkçe"},
           {langCode: "zh",    label: "简体中文"},

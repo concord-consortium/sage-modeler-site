@@ -16,7 +16,7 @@ const languageFiles = {
 };
 
 export const useFullLanguage = (lang: string) => {
-  const fullLangWhitelist = ["zh-TW"];
+  const fullLangWhitelist = ["zh-TW", "pt-BR"];
   return fullLangWhitelist.indexOf(lang) !== -1;
 };
 

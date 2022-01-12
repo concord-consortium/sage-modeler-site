@@ -17,7 +17,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
   di = urlParams.di || di;
 
   // Apply language setting to CODAP iframe. It will propagate down and update Sage modeler language too.
-  const fullLangWhitelist = ["zh-TW"];
+  const fullLangWhitelist = ["zh-TW", "pt-BR"];
   const lang = useFullLanguage(currentLang) ? currentLang : getBaseLanguage(currentLang);
   if (lang !== "en") {
     codap = codap.replace("/en/", `/${lang}/`);
