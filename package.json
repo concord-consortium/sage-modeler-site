@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/concord-consortium/sage-modeler-site#readme",
   "devDependencies": {
-    "@concord-consortium/lara-interactive-api": "^1.4.0-pre.4",
+    "@concord-consortium/lara-interactive-api": "^1.5.0",
     "@concord-consortium/topology-tagger": "^1.0.0",
     "@types/http-proxy": "^1.16.2",
     "@types/node": "^17.0.4",
