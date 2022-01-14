@@ -12,18 +12,18 @@ interface Props {
 
 export const ReportItemComponent: React.FC<Props> = (props) => {
   const {initMessage} = props;
-  const {view} = initMessage;
+  const {view, interactiveItemId} = initMessage;
   const [userAnswers, setUserAnswers] = useState<Record<string, any>>({});
 
   useEffect(() => {
-    addGetReportItemAnswerListener((request) => {
+    addGetReportItemAnswerListener(async (request) => {
       const {type, platformUserId, interactiveState, authoredState} = request;
 
       setUserAnswers(prev => ({...prev, [platformUserId]: interactiveState}));
 
       switch (type) {
         case "html":
-          const html = metricsReportItemHtml(interactiveState);
+          const html = await metricsReportItemHtml({interactiveState, platformUserId, interactiveItemId});
           sendReportItemAnswer({type: "html", platformUserId, html});
           break;
       }

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { getTopology, ISageLink, ISageNode } from "@concord-consortium/topology-tagger";
+import { readAttachment } from "@concord-consortium/lara-interactive-api";
 import { correctIconHTML, getIcon, getIconHtml, incorrectIconHTML } from "./icons";
 
 interface PartialSavedGameState {
@@ -13,6 +14,7 @@ interface PartialInteractiveState {
       savedGameState?: PartialSavedGameState
     }
   }>;
+  __attachment__?: string;
 }
 
 export const MetricsLegendComponent = ({view}: {view: "singleAnswer" | "multipleAnswer"}) => {
@@ -28,10 +30,17 @@ export const MetricsLegendComponent = ({view}: {view: "singleAnswer" | "multiple
   );
 };
 
-const getSavedGameState = (interactiveState: PartialInteractiveState): PartialSavedGameState | null => {
+const getSavedGameState = async ({interactiveState, platformUserId, interactiveItemId}: {interactiveState: PartialInteractiveState, platformUserId: string, interactiveItemId: string}): Promise<PartialSavedGameState | null> => {
   let result: PartialSavedGameState | null = null;
 
-  interactiveState.components?.forEach(component => {
+  if (interactiveState.__attachment__) {
+    const response = await readAttachment({name: interactiveState.__attachment__, interactiveId: interactiveItemId, platformUserId});
+    if (response.ok) {
+      interactiveState = await response.json();
+    }
+  }
+
+  interactiveState?.components?.forEach(component => {
     if (component.componentStorage?.savedGameState) {
       result = component.componentStorage?.savedGameState;
     }
@@ -40,10 +49,10 @@ const getSavedGameState = (interactiveState: PartialInteractiveState): PartialSa
   return result;
 };
 
-export const metricsReportItemHtml = (interactiveState: PartialInteractiveState) => {
+export const metricsReportItemHtml = async ({interactiveState, platformUserId, interactiveItemId}: {interactiveState: PartialInteractiveState, platformUserId: string, interactiveItemId: string}) => {
   let metrics: string = "No topology metrics were found";
 
-  const savedGameState = getSavedGameState(interactiveState);
+  const savedGameState = await getSavedGameState({interactiveState, platformUserId, interactiveItemId});
   if (savedGameState) {
     const topology = getTopology(savedGameState);
 
