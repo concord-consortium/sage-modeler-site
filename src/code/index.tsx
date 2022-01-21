@@ -45,7 +45,7 @@ const options = {
   providers: [
     {
       "name": "readOnly",
-      "displayName": "Examples",
+      "displayName": tr("~SAGEMODELER.OPEN_OR_CREATE.EXAMPLES"),
       "urlDisplayName": "examples",
       "src": "//s3.amazonaws.com/cc-project-resources/sagemodeler-examples/index.json"
     },
