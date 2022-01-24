@@ -1,6 +1,6 @@
 {
   "name": "sage-modeler-site",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Wrapper for Sage running in CODAP",
   "main": "index.js",
   "scripts": {
