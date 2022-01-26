@@ -48,6 +48,13 @@ same domain to enable cross-frame communication.
 
 In production mode CloudFront provides the proxying.
 
+### Local Storage
+
+To enable faster local development `enableLocalStorage` can be added to the query string.  This will add
+the local storage provider to the list of open/save providers.  For example:
+
+https://localhost:10000/app?enableLocalStorage
+
 ### Building
 
 If you want to build a local version run `npm build`, it will create the files in the `dist` folder.
