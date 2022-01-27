@@ -24,6 +24,51 @@ const haveTempFile = CloudFileManager.client.haveTempFile && CloudFileManager.cl
 
 const selfUrl = `${window.location.origin}${window.location.pathname}`;
 
+const providers = [
+  {
+    "name": "readOnly",
+    "displayName": tr("~SAGEMODELER.OPEN_OR_CREATE.EXAMPLES"),
+    "urlDisplayName": "examples",
+    "src": "//s3.amazonaws.com/cc-project-resources/sagemodeler-examples/index.json"
+  },
+  {
+    "name": "lara",
+    "patch": true,
+    "patchObjectHash": obj => {
+      return obj.guid || JSON.stringify(obj);
+    }
+  },
+  {
+    "name": "googleDrive",
+    "apiKey": "AIzaSyArBgGAjVU_TvSXtluZPaEDnBToANkMD4Q",
+    "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/drive.install",
+      "https://www.googleapis.com/auth/drive.metadata.readonly",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  },
+  {
+    "name": "documentStore",
+    "displayName": "Concord Cloud",
+    "deprecationPhase": (() => {
+      return 3;
+    })(),
+    "patch": true,
+    "patchObjectHash": obj => {
+      return obj.guid || JSON.stringify(obj);
+    },
+    "appName": "SageModeler",
+    "appVersion": (window as any).SageModelerBuildConfig.appVersion,
+    "appBuildNum": (window as any).SageModelerBuildConfig.commit,
+  },
+  "localFile"
+];
+if (window.location.search.indexOf("enableLocalStorage") !== -1) {
+  providers.push("localStorage");
+}
+
 const options = {
   app: codapIframeSrc,
   hideMenuBar: launchedFromLara,
@@ -42,47 +87,7 @@ const options = {
     const params = eventData ? JSON.stringify(eventData) : "";
     console.log(event, params);
   },
-  providers: [
-    {
-      "name": "readOnly",
-      "displayName": tr("~SAGEMODELER.OPEN_OR_CREATE.EXAMPLES"),
-      "urlDisplayName": "examples",
-      "src": "//s3.amazonaws.com/cc-project-resources/sagemodeler-examples/index.json"
-    },
-    {
-      "name": "lara",
-      "patch": true,
-      "patchObjectHash": obj => {
-        return obj.guid || JSON.stringify(obj);
-      }
-    },
-    {
-      "name": "googleDrive",
-      "apiKey": "AIzaSyArBgGAjVU_TvSXtluZPaEDnBToANkMD4Q",
-      "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com",
-      "scopes": [
-        "https://www.googleapis.com/auth/drive.file",
-        "https://www.googleapis.com/auth/drive.install",
-        "https://www.googleapis.com/auth/drive.metadata.readonly",
-        "https://www.googleapis.com/auth/userinfo.profile"
-      ]
-    },
-    {
-      "name": "documentStore",
-      "displayName": "Concord Cloud",
-      "deprecationPhase": (() => {
-        return 3;
-      })(),
-      "patch": true,
-      "patchObjectHash": obj => {
-        return obj.guid || JSON.stringify(obj);
-      },
-      "appName": "SageModeler",
-      "appVersion": (window as any).SageModelerBuildConfig.appVersion,
-      "appBuildNum": (window as any).SageModelerBuildConfig.commit,
-    },
-    "localFile"
-  ],
+  providers,
   ui: {
     menu: CloudFileManager.DefaultMenu,
     menuBar: {
