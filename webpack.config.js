@@ -30,6 +30,9 @@ module.exports = (env, argv) => {
       devtool: 'source-map',
       entry: './src/code/index.tsx',
       mode: 'development',
+      devServer: {
+        disableHostCheck: true,
+      },
       output: {
         path: __dirname + (devMode ? "/dev" : "/dist"),
         filename: 'app/js/app.js'
