@@ -81,17 +81,22 @@ for each branch pushed to GitHub and each merge into production.
 
 Merges into production are deployed to http://sagemodeler.concord.org.
 
-Other branches are deployed to http://sagemodeler.concord.org/branch/<name>.
+Other branches are deployed to http://sagemodeler.concord.org/branch/BRANCH-NAME.
 
 To deploy a production release:
 
-1. Increment version number in package.json
-2. Create `release-<version>` branch and commit changes, push to GitHub, create PR and merge
+1. Update the version number in package.json and run `npm install` to update package-lock.json
+2. Create `v<version>` branch and commit changes, push to GitHub, create PR and merge
 3. Checkout master and pull
 4. Checkout production
 5. Run `git merge master --no-ff`
 6. Push production to GitHub
 7. Use https://github.com/concord-consortium/sagemodeler/releases to create a new release tag
+
+**NOTE:** This repo and the [building-models](https://github.com/concord-consortium/building-models) repo should be
+released at the same time, with the same version numbers, even if one of the two repos has no changes, in order to
+keep their version numbers in sync so that the splashscreen and top nav bar show the same version numbers. Refer
+to the readme in that repo for release steps.
 
 ### QA
 
