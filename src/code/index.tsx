@@ -122,6 +122,22 @@ const options = {
     },
     confirmCloseIfDirty: true
   },
+  contentSaveFilter: (currentContent: any) => {
+    // as a hack for now filter out the version numbers from the content so that
+    // app version changes updates don't cause the contents to change
+    if (currentContent?.content) {
+      if (currentContent.content.appVersion) {
+        currentContent.content.appVersion = "2.5.3.filtered";
+      }
+      if (currentContent.content.cfmVersion) {
+        currentContent.content.cfmVersion = "1.5.5.filtered";
+      }
+      if (currentContent.content.content?.appBuildNum) {
+        currentContent.content.content.appBuildNum = "0625.filtered";
+      }
+    }
+    return currentContent;
+  }
 };
 
 // if there is no lang parameter redirect to the browser's language if it isn't English
