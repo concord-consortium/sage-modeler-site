@@ -109,6 +109,10 @@ The parameters are:
 - ?di=<`URL`|`branch`> where `URL` is the url to Sage (di is passed to CODAP, it stands for "data interactive") or `branch` is the deployed Sage branch (example: `164295027-default-to-zero`)
 - ?cfmBaseUrl=<`URL`|`branch`> where `URL` is the url to the /js folder for CFM or `branch` is the deployed CFM branch (example: `fix-example-loads-in-codap`).  In order to allow for testing of separate CFM instances in sage-modeler-site, CODAP and building-models you must explicitly also override their cfmBaseUrl's by using either the `codap:` or `sage:` prefix.  Here is an example url that overrides all the CFMs:  https://sagemodeler.concord.org/app/?cfmBaseUrl=add-persistent-saves&sage:cfmBaseUrl=add-persistent-saves&codap:cfmBaseUrl=add-persistent-saves
 
+To test the automatically deploying CODAP branches from Travis builds use `?codap=/codap-dev/branch/BRANCHNAME/` or just `?codap=/codap-dev/` to access the master branch.  Here is an example using a branch:
+
+https://sagemodeler.concord.org/app/?codap=/codap-dev/branch/182222132-disable-dirty-sync-on-load/
+
 ### Microsite Updates
 
 The files in `src/microsite` are generated from the SageModeler WordPress site.  This process is automated by using the `src/scripts/microsite` script using the following steps.
