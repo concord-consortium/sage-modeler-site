@@ -83,7 +83,7 @@ const options = {
   readableExtensions: ["sagemod"],
   enableLaraSharing: true,
   sendPostMessageClientEvents: true,
-  iframeAllow: "geolocation; bluetooth",
+  iframeAllow: "geolocation; microphone; camera; bluetooth; clipboard-read; clipboard-write",
   log: (event, eventData) => {
     const params = eventData ? JSON.stringify(eventData) : "";
     console.log(event, params);
