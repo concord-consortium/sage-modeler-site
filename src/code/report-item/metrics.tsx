@@ -17,7 +17,7 @@ interface PartialInteractiveState {
   __attachment__?: string;
 }
 
-export const MetricsLegendComponent = ({view}: {view: "singleAnswer" | "multipleAnswer"}) => {
+export const MetricsLegendComponent = ({view}: {view: "singleAnswer" | "multipleAnswer" | "hidden"}) => {
   return (
     <div className={`metricsLegend ${view}`}>
       <div>{getIcon("nodes")} Nodes</div>
