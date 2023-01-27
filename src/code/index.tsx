@@ -47,7 +47,8 @@ const providers = [
       "https://www.googleapis.com/auth/drive.install",
       "https://www.googleapis.com/auth/drive.metadata.readonly",
       "https://www.googleapis.com/auth/userinfo.profile"
-    ]
+    ],
+    "disableSharedDrives": true
   },
   {
     "name": "documentStore",
