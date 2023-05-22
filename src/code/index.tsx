@@ -102,7 +102,7 @@ const options = {
           {langCode: "el",    label: "Ελληνικά"},
           {langCode: "de",    label: "Deutsch"},
           {langCode: "he",    label: "עברית"},
-          {langCode: "ko",    label: "한글"},
+          {langCode: "ko",    label: "한국어"},
           {langCode: "nb",    label: "Bokmål"},
           {langCode: "nn",    label: "Nynorsk"},
           {langCode: "pt-BR", label: "Português do Brasil"},
