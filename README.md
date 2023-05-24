@@ -68,6 +68,13 @@ Please use https://github.com/concord-consortium/building-models repository to a
 in POEditor using provided scripts, and finally copy over all the JSON files from building-models.
 Note that you should push the same changes to both repositories, so they stay in sync.
 
+### Adding a language
+
+To add a new language:
+
+1. Copy over the language file from `building-models`.
+2. Add the new language file in the `languageFiles` map in `src/code/utils/translate.ts`
+
 ### Notes
 
 1. Make sure if you are using Visual Studio Code that you use the workspace version of TypeScript.
