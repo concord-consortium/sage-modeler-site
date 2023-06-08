@@ -7,7 +7,7 @@ on:
         required: true
 env:
   BUCKET: models-resources
-  PREFIX: activity-player
+  PREFIX: sagemodeler
   SRC_FILE: index-top.html
   DEST_FILE: index-staging.html
 jobs:
