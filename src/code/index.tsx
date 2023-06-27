@@ -112,9 +112,11 @@ const options = {
           {langCode: "zh-TW", label: "繁体中文"}
         ],
         onLangChanged: langCode => {
-          const newParams = Object.assign({}, urlParams);
-          newParams.lang = langCode;
-          window.location.search = queryString.stringify(newParams);
+          debugger;
+          const currentUrl = new URL(window.location.toString());
+          currentUrl.searchParams.set("lang", langCode);
+          const newUrl = currentUrl.toString();
+          window.location.assign(newUrl);
         }
       }
     },
