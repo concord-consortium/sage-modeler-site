@@ -125,6 +125,14 @@ const options = {
     },
     confirmCloseIfDirty: true
   },
+  contentLoadFilter: (currentContent: any) => {
+    // this fixes the translated iframe title in the early Korean versions
+    const component = currentContent?.content?.content?.components?.[0];
+    if (component?.type === "DG.GameView" && component?.componentStorage?.title === "세이지모델러") {
+      component.componentStorage.title = "SageModeler";
+    }
+    return currentContent;
+  },
   contentSaveFilter: (currentContent: any) => {
     // as a hack for now filter out the version numbers from the content so that
     // app version changes updates don't cause the contents to change
