@@ -192,6 +192,15 @@ CloudFileManager.createFrame(options, "app", event => {
       }
     });
 
+    window.addEventListener("message", (e) => {
+      // This message is sent by CODAP's CFM due to the saveSecondaryFileViaPostMessage
+      // being set as a CODAP query parameter in codap-iframe-src.ts.
+      if (e.data.action === "saveSecondaryFile") {
+        const {extension, mimeType, content} = e.data;
+        client.saveSecondaryFileAsDialog(content, extension, mimeType);
+      }
+    });
+
     (window as any).onSplashScreenClosed = () => {
       // only show the open or create if there is no hash parameter (for loading a file)
       // and we are not in an iframe (for LARA) or were launched from LARA

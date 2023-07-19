@@ -36,7 +36,8 @@ const iframeSrc = (options: CodapParamsOptions) => {
     hideWebViewLoading: "yes",
     hideUndoRedoInComponent: "yes",
     "lang-override": lang,
-    inbounds: "true"
+    inbounds: "true",
+    saveSecondaryFileViaPostMessage: "true"
   };
   const sageParams = {
     standalone: "true"
