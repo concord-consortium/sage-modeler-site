@@ -15,7 +15,7 @@ import * as httpProxy from "http-proxy";
 const config = {
   port: 10000,
   endpoints: {
-    codap: path.normalize(`${__dirname}/../../../codap/dist/travis/`),
+    codap: path.normalize(`${__dirname}/../../../codap/dist/build_0673/`),
     sage: path.normalize(`${__dirname}/../../../building-models/dev/`),
     cfm: path.normalize(`${__dirname}/../../../cloud-file-manager/dist/`),
   }
