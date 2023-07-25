@@ -13,7 +13,7 @@ jobs:
           node-version: '12'
       - name: Install Dependencies
         run: npm ci
-      - uses: concord-consortium/s3-deploy-action@main
+      - uses: concord-consortium/s3-deploy-action@v1
         with:
           bucket: models-resources
           prefix: sagemodeler
