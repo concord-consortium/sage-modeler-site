@@ -36,6 +36,9 @@ const providers = [
     "patch": true,
     "patchObjectHash": obj => {
       return obj.guid || JSON.stringify(obj);
+    },
+    "logLaraData": laraData => {
+      console.log("SageModeler logLaraData:" + JSON.stringify(laraData));
     }
   },
   {
