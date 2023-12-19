@@ -42,6 +42,7 @@ const providers = [
     "name": "googleDrive",
     "apiKey": "AIzaSyArBgGAjVU_TvSXtluZPaEDnBToANkMD4Q",
     "clientId": "617149450375-rglbpcteq9ej0j3gsfc59io5fgpp42eb.apps.googleusercontent.com",
+    "appId": "617149450375",
     "scopes": [
       "https://www.googleapis.com/auth/drive.file",
       "https://www.googleapis.com/auth/drive.install",
