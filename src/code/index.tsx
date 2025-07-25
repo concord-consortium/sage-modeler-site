@@ -105,6 +105,7 @@ const options = {
           {langCode: "ko",    label: "한국어"},
           {langCode: "nb",    label: "Bokmål"},
           {langCode: "nn",    label: "Nynorsk"},
+          {langCode: "nl",    label: "Nederlands"},
           {langCode: "pl",    label: "Polski"},
           {langCode: "pt-BR", label: "Português do Brasil"},
           {langCode: "th",    label: "ไทย"},
