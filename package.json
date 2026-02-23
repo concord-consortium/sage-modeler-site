@@ -15,7 +15,7 @@
     "start:v3": "npm-run-all --parallel dev:proxy:v3 dev:server:v3 dev:browse:v3",
     "dev:server:v3": "CODAP_VERSION=v3 webpack-dev-server --https --inline --hot --port=10001 --content-base dist/",
     "dev:proxy:v3": "ts-node src/devproxy3/index.ts",
-    "dev:browse:v3": "opener 'https://localhost:10000/app/?codap=/codap/index.html'",
+    "dev:browse:v3": "opener https://localhost:10000/app/?codap=/codap/index.html",
     "microsite:view": "live-server src/microsite"
   },
   "repository": {
