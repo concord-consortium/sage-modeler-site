@@ -81,6 +81,47 @@ To add a new language:
    To ensure that you are open a TypeScript file in VSC and then click on the version number next to
    `TypeScript React` in the status bar and select 'Use Workspace Version' in the popup menu.
 
+## CODAP v3 Development
+
+### Prerequisites
+
+Clone these sibling repos alongside `sage-modeler-site`:
+
+| Repo | Branch | Directory |
+|------|--------|-----------|
+| [codap](https://github.com/concord-consortium/codap) | `main` | `../codap/` |
+| [building-models](https://github.com/concord-consortium/building-models) | `main` | `../building-models/` |
+| [cloud-file-manager](https://github.com/concord-consortium/cloud-file-manager) | `v1.9.x` | `../cloud-file-manager/` |
+
+Build Building Models and CFM:
+- `cd ../building-models && nvm use 14 && npm install && npm run build`
+- `cd ../cloud-file-manager && nvm use 18 && npm install && npm run build`
+
+### Dev-server mode (live development, manual reload)
+
+1. Start the CODAP v3 dev server: `cd ../codap/v3 && nvm use 22 && npm start`
+2. Start the SageModeler v3 proxy: `nvm use 12 && npm run start:v3`
+3. Browser opens to `https://localhost:10000/app/?codap=/codap/index.html`
+
+The `start:v3` script configures webpack to default to CODAP v3, so `https://localhost:10000/app/` also works without the `?codap=` parameter.
+
+CODAP v3 changes require a manual browser reload (HMR does not work through the proxy). SageModeler changes hot-reload normally.
+
+### Static-fallback mode (no CODAP dev server)
+
+1. Build CODAP v3: `cd ../codap/v3 && nvm use 22 && npm run build`
+2. Start the SageModeler v3 proxy: `nvm use 12 && npm run start:v3`
+
+The proxy auto-detects that the dev server isn't running and serves from `../codap/v3/dist/`.
+
+### HTTPS mode (optional)
+
+If CODAP v3 is running with `npm run start:secure` (HTTPS), set the environment variable before starting:
+
+```
+CODAP_V3_URL=https://localhost:8080 npm run start:v3
+```
+
 ## Deployment
 
 Deployments are based on the contents of the /dist folder and are built automatically by GitHub Actions for each branch and tag pushed to GitHub.
