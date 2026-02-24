@@ -19,10 +19,12 @@ module.exports = (env, argv) => {
           tag: packageJSON.version
         },
         buildInfoString = `${buildInfo.date} ${buildInfo.tag}`,
+        isV3 = process.env.CODAP_VERSION === "v3",
+        appPrefix = isV3 ? "app-v3" : "app",
         cfmUrl = devMode ? "/cfm" : "/cfm",
         codapUrl = devMode
-          ? (process.env.CODAP_VERSION === "v3" ? "/codap/index.html" : "/codap/static/dg/en/cert/index.html")
-          : "/releases/stable/static/dg/en/cert/index.html",
+          ? (isV3 ? "/codap/index.html" : "/codap/static/dg/en/cert/index.html")
+          : (isV3 ? "/codap3/index.html" : "/releases/stable/static/dg/en/cert/index.html"),
         sageUrl = devMode ? "/sage" : "/sage";
 
   return [
@@ -37,7 +39,7 @@ module.exports = (env, argv) => {
       },
       output: {
         path: __dirname + (devMode ? "/dev" : "/dist"),
-        filename: 'app/js/app.js'
+        filename: appPrefix + '/js/app.js'
       },
       performance: { hints: false },
       module: {
@@ -107,11 +109,11 @@ module.exports = (env, argv) => {
       plugins: [
         new ForkTsCheckerWebpackPlugin(),
         new MiniCssExtractPlugin({
-          filename: "app/css/app.css"
+          filename: appPrefix + "/css/app.css"
         }),
         new HtmlWebpackPlugin({
           inject: false,
-          filename: 'app/index.html',
+          filename: appPrefix + '/index.html',
           template: 'src/templates/index.html.ejs',
           __BUILD_INFO__: buildInfoString,
           __ENVIRONMENT__: environment,
@@ -119,7 +121,8 @@ module.exports = (env, argv) => {
           __BUILD_DATE__: buildInfo.date,
           __CFM_URL__: cfmUrl,
           __CODAP_URL__: codapUrl,
-          __SAGE_URL__: sageUrl
+          __SAGE_URL__: sageUrl,
+          __CODAP_VERSION__: isV3 ? "v3" : "v2"
         }),
         new CopyWebpackPlugin([{
           from: 'src/assets',
@@ -128,7 +131,7 @@ module.exports = (env, argv) => {
         // splashscreen.js in building-models uses app relative `img/logo.png` url
         new CopyWebpackPlugin([{
           from: 'src/assets/img',
-          to: 'app/img'
+          to: appPrefix + '/img'
         }]),
         new CopyWebpackPlugin([{
           from: 'src/microsite',
@@ -142,7 +145,7 @@ module.exports = (env, argv) => {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
               chunks: 'all',
-              filename: 'app/js/globals.js'
+              filename: appPrefix + '/js/globals.js'
             }
           }
         }

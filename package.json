@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel dev:proxy dev:server dev:browse",
-    "build": "npm-run-all lint clean build:webpack",
+    "build": "npm-run-all lint clean build:webpack build:webpack:v3",
     "build:webpack": "webpack --mode production --devtool false",
+    "build:webpack:v3": "CODAP_VERSION=v3 webpack --mode production --devtool false",
     "clean": "rimraf dist",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "dev:proxy": "ts-node src/devproxy/index.ts",
@@ -15,7 +16,7 @@
     "start:v3": "npm-run-all --parallel dev:proxy:v3 dev:server:v3 dev:browse:v3",
     "dev:server:v3": "CODAP_VERSION=v3 webpack-dev-server --https --inline --hot --port=10001 --content-base dist/",
     "dev:proxy:v3": "ts-node src/devproxy3/index.ts",
-    "dev:browse:v3": "opener https://localhost:10000/app/",
+    "dev:browse:v3": "opener https://localhost:10000/app-v3/",
     "microsite:view": "live-server src/microsite"
   },
   "repository": {
