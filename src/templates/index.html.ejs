@@ -110,7 +110,8 @@
       buildDate: "<%= htmlWebpackPlugin.options.__BUILD_DATE__ %>",
       cfmUrl: cfmUrl,
       codapUrl: "<%= htmlWebpackPlugin.options.__CODAP_URL__%>",
-      sageUrl: "<%= htmlWebpackPlugin.options.__SAGE_URL__%>"
+      sageUrl: "<%= htmlWebpackPlugin.options.__SAGE_URL__%>",
+      codapVersion: "<%= htmlWebpackPlugin.options.__CODAP_VERSION__ %>"
     }
     // Render splash screen.
     setSageVersionInfo(SageModelerBuildConfig.appVersion, SageModelerBuildConfig.buildDate);

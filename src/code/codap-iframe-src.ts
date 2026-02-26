@@ -16,16 +16,28 @@ const iframeSrc = (options: CodapParamsOptions) => {
   cfmBaseUrl = urlParams.cfmBaseUrl || cfmBaseUrl;
   di = urlParams.di || di;
 
+  // Build-time flag from webpack via SageModelerBuildConfig
+  const useCodap3 = (window as any).SageModelerBuildConfig.codapVersion === "v3";
+
   // Apply language setting to CODAP iframe. It will propagate down and update Sage modeler language too.
   const fullLangWhitelist = ["zh-TW", "pt-BR"];
   const lang = useFullLanguage(currentLang) ? currentLang : getBaseLanguage(currentLang);
-  if (lang !== "en") {
+  // v3 uses lang-override query param only; skip path substitution to avoid
+  // corrupting branch names that might contain "/en/" as a substring.
+  if (!useCodap3 && lang !== "en") {
     codap = codap.replace("/en/", `/${lang}/`);
   }
 
   // assume release/branch names for params without slashes
   const expandBranchUrl = (url: string, branchUrl: string) => url.indexOf("/") === -1 ? branchUrl : url;
-  codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/${lang}/cert/`);
+  if (useCodap3) {
+    // Extract prefix from build-time URL: "/codap3" (prod) or "/codap" (dev).
+    // Assumes build-time codapUrl always ends with /index.html.
+    const codapPrefix = options.codap.replace(/\/index\.html$/, "");
+    codap = expandBranchUrl(codap, `${codapPrefix}/branch/${codap}/`);
+  } else {
+    codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/${lang}/cert/`);
+  }
   di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
   cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
 
