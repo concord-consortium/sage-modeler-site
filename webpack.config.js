@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
         cfmUrl = devMode ? "/cfm" : "/cfm",
         codapUrl = devMode
           ? (isV3 ? "/codap/index.html" : "/codap/static/dg/en/cert/index.html")
-          : (isV3 ? "/codap3/index.html" : "/releases/stable/static/dg/en/cert/index.html"),
+          : (isV3 ? "/codap3/index.html" : "/v2/static/dg/en/cert/index.html"),
         sageUrl = devMode ? "/sage" : "/sage";
 
   return [

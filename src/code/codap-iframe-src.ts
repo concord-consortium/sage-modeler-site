@@ -36,7 +36,7 @@ const iframeSrc = (options: CodapParamsOptions) => {
     const codapPrefix = options.codap.replace(/\/index\.html$/, "");
     codap = expandBranchUrl(codap, `${codapPrefix}/branch/${codap}/`);
   } else {
-    codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/${lang}/cert/`);
+    codap = expandBranchUrl(codap, `/v2/static/dg/${lang}/cert/`);
   }
   di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
   cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
