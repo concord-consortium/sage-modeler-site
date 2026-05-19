@@ -161,7 +161,7 @@ where those projects are deployed.  This enables this project to be tested again
 
 The parameters are:
 
-- ?codap=<`URL`|`release`> where `URL` is the url to the CODAP index.html page or `release` is the CODAP release folder (example: `build_0473`)
+- ?codap=<`URL`|`branch`> where `URL` is the url to the CODAP index.html page (works for both v2 and v3) or `branch` is the name of a CODAP v3 branch deployed to `/codap3/branch/<branch>/`. For CODAP v2 the bare-name shortcut is no longer meaningful - v2 always loads through `/v2/` regardless of the value passed; use the full-URL form (`?codap=https://...`) for any one-off v2-build testing.
 - ?di=<`URL`|`branch`> where `URL` is the url to Sage (di is passed to CODAP, it stands for "data interactive") or `branch` is the deployed Sage branch (example: `164295027-default-to-zero`)
 - ?cfmBaseUrl=<`URL`|`branch`> where `URL` is the url to the /js folder for CFM or `branch` is the deployed CFM branch (example: `fix-example-loads-in-codap`).  In order to allow for testing of separate CFM instances in sage-modeler-site, CODAP and building-models you must explicitly also override their cfmBaseUrl's by using either the `codap:` or `sage:` prefix.  Here is an example url that overrides all the CFMs:  https://sagemodeler.concord.org/app/?cfmBaseUrl=add-persistent-saves&sage:cfmBaseUrl=add-persistent-saves&codap:cfmBaseUrl=add-persistent-saves
 

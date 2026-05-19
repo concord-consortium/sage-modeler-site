@@ -36,7 +36,9 @@ const iframeSrc = (options: CodapParamsOptions) => {
     const codapPrefix = options.codap.replace(/\/index\.html$/, "");
     codap = expandBranchUrl(codap, `${codapPrefix}/branch/${codap}/`);
   } else {
-    codap = expandBranchUrl(codap, `/releases/${codap}/static/dg/${lang}/cert/`);
+    // v2 ignores short ?codap= values (no per-build routing post-v3-cutover);
+    // bare names always expand to the stable /v2/ path. Full-URL overrides still work.
+    codap = expandBranchUrl(codap, `/v2/static/dg/${lang}/cert/`);
   }
   di =  expandBranchUrl(di, `/sage/branch/${di}/sagemodeler.html`);
   cfmBaseUrl = expandBranchUrl(cfmBaseUrl, `/cfm/branch/${cfmBaseUrl}/js`);
