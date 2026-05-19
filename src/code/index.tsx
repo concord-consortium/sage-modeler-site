@@ -99,6 +99,7 @@ const options = {
         options: [
           {langCode: "en-US", label: "English"},
           {langCode: "es",    label: "Español"},
+          {langCode: "fr",    label: "Français"},
           {langCode: "el",    label: "Ελληνικά"},
           {langCode: "de",    label: "Deutsch"},
           {langCode: "he",    label: "עברית"},

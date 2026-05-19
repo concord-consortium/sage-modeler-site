@@ -5,6 +5,7 @@ const languageFiles = {
   "el":      require("./lang/el.json"),      // Greek
   "en-US":   require("./lang/en-US.json"),   // US English
   "es":      require("./lang/es.json"),      // Spanish
+  "fr":      require("./lang/fr.json"),      // French
   "he":      require("./lang/he.json"),      // Hebrew
   "ko":      require("./lang/ko.json"),      // Korean
   "nb":      require("./lang/nb.json"),      // Norwegian Bokmål
